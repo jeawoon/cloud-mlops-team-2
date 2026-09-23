@@ -135,18 +135,21 @@ with col2:
 
 forecast_hours = st.select_slider("예측 기간", options=list(range(1, 9)), value=1, format_func=lambda value: f"{value}시간")
 
-advanced = st.toggle("고급 예측 모드: 직전 1시간 사용량 입력", value=False)
+advanced = st.toggle("고급 예측 모드: 최근 사용 패턴 입력", value=False)
 previous_hour = None
 if advanced:
+    st.caption("최근 전력량은 다음 시간의 사용량과 피크 발생 확률을 계산하는 데 사용됩니다.")
     previous_hour = st.number_input("직전 1시간 평균 전력량 (Wh/10분)", min_value=0.0, value=80.0, step=5.0)
     same_hour_yesterday = st.number_input("어제 같은 시간 평균 전력량 (Wh/10분)", min_value=0.0, value=80.0, step=5.0)
     recent_3h_mean = st.number_input("최근 3시간 평균 전력량 (Wh/10분)", min_value=0.0, value=80.0, step=5.0)
 mode = "advanced" if advanced else "manual"
 models = bundle["models"][mode]
+peak_model = bundle.get("peak_models", {}).get(mode)
 
 # The first prediction uses the selected current hour; later hours are forecast
 # sequentially, carrying the predicted use forward in advanced mode.
 forecast = []
+peak_probabilities = []
 previous_for_forecast = previous_hour
 recent_for_forecast = recent_3h_mean if advanced else None
 for step in range(forecast_hours):
@@ -162,6 +165,8 @@ for step in range(forecast_hours):
     middle = max(0, float(models["0.5"].predict(row)[0]))
     upper = max(lower, float(models["0.9"].predict(row)[0]))
     forecast.append((lower, middle, upper))
+    if peak_model is not None:
+        peak_probabilities.append(float(peak_model.predict_proba(row)[0, 1]))
     if advanced:
         previous_for_forecast = middle
         recent_for_forecast = (recent_for_forecast * 2 + middle) / 3
@@ -182,6 +187,16 @@ a.metric(f"향후 {forecast_hours}시간 평균", f"{p50:.0f} Wh/10분")
 b.metric("누적 예상 사용량", f"{total_kwh:.2f} kWh")
 c.metric("사용 구간", level)
 st.caption(f"누적 예상 범위: {total_low_kwh:.2f} ~ {total_high_kwh:.2f} kWh")
+if peak_probabilities:
+    peak_probability = max(peak_probabilities)
+    peak_hour = (hour + peak_probabilities.index(peak_probability)) % 24
+    peak_label = "높음" if peak_probability >= 0.60 else "주의" if peak_probability >= 0.30 else "낮음"
+    st.subheader("피크 전력 발생 가능성")
+    peak_col1, peak_col2 = st.columns(2)
+    peak_col1.metric("피크 발생 확률", f"{peak_probability:.0%}", peak_label)
+    peak_col2.metric("가장 주의할 시간", f"{peak_hour:02d}:00")
+    peak_info = bundle["metrics"].get("peak_prediction", {}).get("definition", "학습 데이터 상위 사용량 구간")
+    st.caption(f"피크는 '{peak_info}'으로 정의했습니다. 직전 전력량을 입력한 고급 모드에서 생활 패턴을 더 반영합니다.")
 st.subheader(f"향후 {forecast_hours}시간 예상 전기요금")
 bill_col1, bill_col2 = st.columns(2)
 with bill_col1:
@@ -193,4 +208,9 @@ st.metric(f"향후 {forecast_hours}시간 추가 예상요금", f"약 {with_tax:
 st.caption(f"예상 사용량 {total_kwh:.3f} kWh 기준. 전력량요금은 약 {energy_only:.0f}원이며 부가가치세·전력산업기반기금을 포함한 참고 추정치입니다. 기본요금·할인·TV수신료는 제외됩니다.")
 metric = bundle["metrics"][f"{mode}_mode"]
 st.caption(f"{('고급' if advanced else '기본')} 모드 검증 성능: MAE {metric['mae_wh']} Wh, R² {metric['r2']}, 80% 목표 예측구간 포함률 {metric['p10_p90_coverage_pct']}%")
-st.info("학습 데이터는 2016년 1~5월 자료입니다. 따라서 한여름 냉방 사용량은 실제보다 낮게 예측될 수 있습니다.")
+selection = bundle["metrics"].get("model_selection", {}).get(mode)
+if selection:
+    st.caption(f"현재 선택된 학습 모델: {selection}")
+data_note = bundle["metrics"].get("data_period", {}).get("note")
+if data_note:
+    st.info(data_note)
