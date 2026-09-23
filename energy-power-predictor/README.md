@@ -11,6 +11,12 @@ python3 train.py --data '/path/to/energydata_complete.csv' --output models
 streamlit run app.py
 ```
 
+Plegma 확장 학습을 적용하려면 다음처럼 실행합니다.
+
+```bash
+python3 train.py --data '/path/to/energydata_complete.csv' --plegma-dir 'data/plegma/extracted' --output models
+```
+
 ## 처리 방식
 
 - 10분 단위 기록을 시간별 평균으로 집계해 돌발 사용량의 영향을 줄입니다.
@@ -21,6 +27,8 @@ streamlit run app.py
 - 기본 모드는 환경·시간 정보만, 고급 모드는 직전 1시간 사용량까지 사용합니다.
 - 고급 모드는 직전 1시간, 최근 3시간 평균, 어제 같은 시간 사용량을 함께 사용합니다.
 - 각 모드의 P10·P50·P90 분위수 회귀 모델이 예상값과 예측 구간을 만듭니다.
+- Plegma 확장 학습을 지정하면 그리스 13가구의 사계절 전력·실내외 온습도 데이터를 시간별로 변환해 추가합니다. 원본 UCI 테스트 구간은 학습에 넣지 않아, 기존 데이터 기준 성능을 계속 확인할 수 있습니다.
+- 학습 후에는 기본·고급 모드별 UCI 테스트 MAE를 비교해 더 낮은 오차의 모델만 선택합니다. 현재 배포 모델은 기본 모드에 UCI 원본 모델(MAE 33.39Wh), 고급 모드에 Plegma 확장 모델(MAE 27.09Wh)을 사용합니다.
 - 원본 CSV에는 날씨 범주가 없어서 학습 시 실외 온도·습도에 따른 데모 범주를 생성합니다. 실제 사용 시에는 사용자가 선택한 날씨를 반영합니다.
 
 ## 한국 날씨 API

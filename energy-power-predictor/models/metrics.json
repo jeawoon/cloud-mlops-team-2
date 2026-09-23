@@ -3,6 +3,7 @@
   "hourly_rows": 3265,
   "train_rows": 2612,
   "test_rows": 653,
+  "external_plegma_rows": 62602,
   "target": "next-hour average Appliances use",
   "target_unit": "Wh per 10 minutes (hourly average)",
   "manual_mode": {
@@ -12,10 +13,10 @@
     "p10_p90_coverage_pct": 80.1
   },
   "advanced_mode": {
-    "mae_wh": 27.42,
-    "rmse_wh": 53.75,
-    "r2": 0.389,
-    "p10_p90_coverage_pct": 81.3
+    "mae_wh": 27.09,
+    "rmse_wh": 54.33,
+    "r2": 0.376,
+    "p10_p90_coverage_pct": 87.6
   },
   "baselines": {
     "global_median_mae_wh": 40.66,
@@ -25,6 +26,25 @@
   "data_period": {
     "start": "2016-01-12 17:00:00",
     "end": "2016-05-27 17:00:00",
-    "note": "Training data covers winter to spring only; summer generalization is limited."
+    "note": "기본 모드는 UCI 원본 모델을, 고급 모드는 Plegma 13가구 사계절 데이터를 추가한 모델을 사용합니다."
+  },
+  "peak_prediction": {
+    "definition": "next-hour usage at or above the training-period 90th percentile",
+    "manual_mode": {
+      "threshold_wh": 210.0,
+      "positive_rate_pct": 7.5,
+      "roc_auc": 0.743,
+      "average_precision": 0.153
+    },
+    "advanced_mode": {
+      "threshold_wh": 210.0,
+      "positive_rate_pct": 7.5,
+      "roc_auc": 0.909,
+      "average_precision": 0.421
+    }
+  },
+  "model_selection": {
+    "manual": "UCI only",
+    "advanced": "UCI + Plegma"
   }
 }
