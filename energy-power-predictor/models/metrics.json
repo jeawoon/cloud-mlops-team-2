@@ -1,0 +1,30 @@
+{
+  "source_rows": 19735,
+  "hourly_rows": 3265,
+  "train_rows": 2612,
+  "test_rows": 653,
+  "target": "next-hour average Appliances use",
+  "target_unit": "Wh per 10 minutes (hourly average)",
+  "manual_mode": {
+    "mae_wh": 33.39,
+    "rmse_wh": 65.2,
+    "r2": 0.101,
+    "p10_p90_coverage_pct": 80.1
+  },
+  "advanced_mode": {
+    "mae_wh": 27.42,
+    "rmse_wh": 53.75,
+    "r2": 0.389,
+    "p10_p90_coverage_pct": 81.3
+  },
+  "baselines": {
+    "global_median_mae_wh": 40.66,
+    "previous_hour_mae_wh": 31.89,
+    "same_hour_yesterday_mae_wh": 45.38
+  },
+  "data_period": {
+    "start": "2016-01-12 17:00:00",
+    "end": "2016-05-27 17:00:00",
+    "note": "Training data covers winter to spring only; summer generalization is limited."
+  }
+}

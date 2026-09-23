@@ -1,0 +1,13 @@
+.DS_Store
+.venv/
+.venv_run/
+work/
+reports/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+.streamlit/secrets.toml
+*.pem
+*.key
+models/sample_*/
