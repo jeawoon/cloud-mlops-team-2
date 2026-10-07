@@ -1,19 +1,30 @@
 from __future__ import annotations
 
 import json
+import os
 from datetime import datetime
 from pathlib import Path
 from urllib.parse import urlencode
-from urllib.request import urlopen
+from urllib.request import Request, urlopen
 
 import joblib
 import streamlit as st
 
-from src.features import make_demo_row
 from src.billing import estimate_incremental_cost
 
 ROOT = Path(__file__).parent
 MODEL_PATH = ROOT / "models" / "energy_model.joblib"
+
+
+def request_prediction(endpoint, payload):
+    url = os.environ.get('PREDICTION_API_URL', 'http://127.0.0.1:8000') + endpoint
+    request = Request(url, data=json.dumps(payload).encode(), headers={'Content-Type':'application/json'}, method='POST')
+    try:
+        with urlopen(request, timeout=20) as response:
+            return json.load(response)
+    except (OSError, ValueError):
+        st.error('예측 서버에 연결할 수 없습니다. 잠시 후 다시 시도해주세요.')
+        st.stop()
 
 
 @st.cache_resource
@@ -146,33 +157,15 @@ if advanced:
     same_hour_yesterday = st.number_input("어제 같은 시간 평균 전력량 (Wh/10분)", min_value=0.0, value=80.0, step=5.0)
     recent_3h_mean = st.number_input("최근 3시간 평균 전력량 (Wh/10분)", min_value=0.0, value=80.0, step=5.0)
 mode = "advanced" if advanced else "manual"
-models = bundle["models"][mode]
-peak_model = bundle.get("peak_models", {}).get(mode)
-
-# The first prediction uses the selected current hour; later hours are forecast
-# sequentially, carrying the predicted use forward in advanced mode.
-forecast = []
-peak_probabilities = []
-previous_for_forecast = previous_hour
-recent_for_forecast = recent_3h_mean if advanced else None
-for step in range(forecast_hours):
-    current_hour = (hour + step) % 24
-    current_weekday = (weekday + (hour + step) // 24) % 7
-    row = make_demo_row(
-        indoor_temp, indoor_humidity, outdoor_temp, outdoor_humidity, weather,
-        current_hour, current_weekday, datetime.now().month, bundle["defaults"],
-        previous_for_forecast, same_hour_yesterday if advanced else None,
-        recent_for_forecast,
-    )
-    middle = max(0, float(models["0.5"].predict(row)[0]))
-    lower = min(middle, max(0, float(models["0.1"].predict(row)[0])))
-    upper = max(middle, float(models["0.9"].predict(row)[0]))
-    forecast.append((lower, middle, upper))
-    if peak_model is not None:
-        peak_probabilities.append(float(peak_model.predict_proba(row)[0, 1]))
-    if advanced:
-        previous_for_forecast = middle
-        recent_for_forecast = (recent_for_forecast * 2 + middle) / 3
+conditions = dict(indoor_temp=indoor_temp, indoor_humidity=indoor_humidity,
+                  outdoor_temp=outdoor_temp, outdoor_humidity=outdoor_humidity,
+                  hour=hour, weekday=weekday)
+payload = dict(conditions, weather=weather, month=datetime.now().month, mode=mode, forecast_hours=forecast_hours)
+if advanced:
+    payload.update(previous_hour_wh=previous_hour, same_hour_yesterday_wh=same_hour_yesterday, recent_3h_mean_wh=recent_3h_mean)
+prediction = request_prediction('/api/predict', payload)
+forecast = prediction['forecast']
+peak_probabilities = prediction['peak_probabilities']
 
 p10 = sum(item[0] for item in forecast) / forecast_hours
 p50 = sum(item[1] for item in forecast) / forecast_hours
@@ -221,39 +214,31 @@ if data_note:
 recent_path = ROOT / 'models' / 'recent_model.joblib'
 if recent_path.exists():
     with st.expander('최근 10분 전력 패턴으로 예측', expanded=False):
-        from train_recent import recent_row
         st.caption('최근에 끝난 10분 구간부터 오래된 순서로 입력하세요. 각 값은 해당 10분 동안 사용한 에너지(Wh)입니다.')
         recent = []
         for index in range(6):
             recent.append(st.number_input(f'{index*10}~{(index+1)*10}분 전 사용량 (Wh)', min_value=0.0, value=80.0, step=5.0, key=f'recent_wh_{index}'))
         minutes = st.selectbox('최근 패턴 예측 기간', [10, 60], format_func=lambda x: f'다음 {x}분')
-        recent_bundle = joblib.load(recent_path)
-        key = str(minutes//10)
-        features = recent_row(indoor_temp, indoor_humidity, outdoor_temp, outdoor_humidity, hour, weekday, recent)
-        estimate = max(0.0, float(recent_bundle['models'][key].predict(features)[0]))
-        use_kwh = estimate * (minutes/10) / 1000
+        response = request_prediction('/api/recent', dict(conditions, recent_wh=recent, minutes=minutes, monthly_kwh=monthly_kwh, tariff=tariff))
+        use_kwh = response['total_kwh']
         st.metric(f'다음 {minutes}분 누적 예상 사용량', f'{use_kwh:.3f} kWh')
-        _, cost = estimate_incremental_cost(monthly_kwh, use_kwh, tariff)
+        cost = response['estimated_cost_krw']
         st.metric(f'다음 {minutes}분 추가 예상요금', f'약 {cost:.0f}원')
-        result = recent_bundle['metrics'][key]['test']
+        result = response['metrics']
         st.caption(f"시간 순서 테스트: R² {result['r2']}, MAE {result['mae_wh']} Wh/10분. 최근 증가량·평균·변동폭을 함께 사용합니다.")
 
 refit_path = ROOT / 'models' / 'refit_model.joblib'
 if refit_path.exists():
     with st.expander('REFIT·UCI 장기간 데이터 기반 가정 전체 전력 예측'):
-        from train_refit import row as refit_row
         st.caption('영국 REFIT·프랑스 UCI 장기간 전체 전력으로 학습한 별도 모델입니다. 기존 UCI 가전 전력 모델과 예측 대상이 다릅니다. 온습도는 이 모델에서 사용하지 않습니다.')
         typical_wh = st.number_input('최근 장기간 전체 전력 사용량 중앙값 (Wh/10분)', min_value=1.0, value=80.0, step=5.0)
         refit_recent = [st.number_input(f'전체 전력 {i*10}~{(i+1)*10}분 전 (Wh)', min_value=0.0, value=80.0, step=5.0, key=f'refit_wh_{i}') for i in range(6)]
         refit_minutes = st.selectbox('전체 전력 예측 기간', [10, 60], format_func=lambda x: f'다음 {x}분')
-        refit_bundle = joblib.load(refit_path)
-        key = str(refit_minutes//10)
-        refit_features = refit_row(refit_recent, typical_wh, hour, weekday)
-        wh = max(0.0, float(refit_bundle['models'][key].predict(refit_features)[0])*typical_wh)
-        kwh = wh*(refit_minutes/10)/1000
+        response = request_prediction('/api/whole-house', dict(hour=hour, weekday=weekday, recent_wh=refit_recent, typical_wh=typical_wh, minutes=refit_minutes, monthly_kwh=monthly_kwh, tariff=tariff))
+        kwh = response['total_kwh']
         st.metric('전체 전력 누적 예상 사용량', f'{kwh:.3f} kWh')
-        _, refit_cost = estimate_incremental_cost(monthly_kwh, kwh, tariff)
+        refit_cost = response['estimated_cost_krw']
         st.metric('전체 전력 추가 예상요금', f'약 {refit_cost:.0f}원')
-        st.caption(f"공개 데이터 가구별 정규화 테스트 R²: {refit_bundle['metrics'][key]['r2']}. 다른 집에서도 같은 성능을 보장하는 수치는 아닙니다.")
+        st.caption(f"공개 데이터 가구별 정규화 테스트 R²: {response['metrics']['r2']}. 다른 집에서도 같은 성능을 보장하는 수치는 아닙니다.")
         st.markdown('[데이터 출처: REFIT, CC BY 4.0](https://zenodo.org/records/5063428)')
         st.markdown('[데이터 출처: UCI Household Power, CC BY 4.0](https://archive.ics.uci.edu/dataset/235/individual+household+electric+power+consumption)')

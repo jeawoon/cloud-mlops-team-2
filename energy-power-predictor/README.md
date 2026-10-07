@@ -8,8 +8,27 @@
 cd energy-power-predictor
 python3 -m pip install -r requirements.txt
 python3 train.py --data '/path/to/energydata_complete.csv' --output models
-streamlit run app.py
+python3 api.py --port 8000
 ```
+
+위 API 서버 터미널은 켜 둔 상태에서 다른 터미널을 열어 같은 폴더에서 `python3 -m streamlit run app.py`를 실행합니다. 웹페이지는 `http://127.0.0.1:8000` API에 JSON으로 예측을 요청합니다. 다른 API 서버를 사용할 때는 `PREDICTION_API_URL` 환경변수를 설정합니다.
+
+## 모델 예측 API
+
+- `GET /api/health`: 모델 로드 상태 확인
+- `GET /api/docs`: 입출력 필드 설명
+- `POST /api/predict`: 온습도 기반 기본·고급 1~8시간 예측. 응답 `forecast`는 시간별 `[하한, 중앙, 상한]` Wh/10분, `total_kwh`는 누적 kWh입니다.
+- `POST /api/recent`: 최근 6개 10분 사용량 기반 10분/1시간 가전 예측
+- `POST /api/whole-house`: 최근 6개 사용량과 장기간 중앙값 기반 전체 전력 예측
+- `recent_wh`는 최근 값부터 오래된 값 순서입니다. 잘못된 범위·누락 입력은 HTTP 422 JSON 오류를 반환합니다.
+
+```bash
+curl -X POST http://54.180.145.65/api/predict \
+  -H 'Content-Type: application/json' \
+  -d '{"indoor_temp":22,"indoor_humidity":45,"outdoor_temp":10,"outdoor_humidity":70,"hour":18,"weekday":2,"mode":"manual","forecast_hours":1}'
+```
+
+AWS에서는 `energy-api`와 `energy-predictor` 서비스가 자동 실행됩니다. Nginx가 외부 `/api/` 요청을 내부 8000 포트로 전달하고, 웹페이지 요청은 내부 API를 사용합니다. 외부 보안 그룹은 기존 HTTP 80번을 유지합니다.
 
 Plegma 확장 학습을 적용하려면 다음처럼 실행합니다.
 
