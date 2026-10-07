@@ -15,10 +15,10 @@ from src.features import ADVANCED_FEATURE_COLUMNS, MANUAL_FEATURE_COLUMNS, make_
 from src.plegma import load_plegma_training_data
 
 
-def fit_models(X: pd.DataFrame, y: pd.Series, sample_weight: pd.Series | None = None) -> dict:
+def fit_models(X: pd.DataFrame, y: pd.Series, sample_weight: pd.Series | None = None, squared_center: bool = False) -> dict:
     return {
         str(q): GradientBoostingRegressor(
-            loss="quantile", alpha=q, n_estimators=250, max_depth=2,
+            loss="squared_error" if q == 0.5 and squared_center else "quantile", alpha=q, n_estimators=250, max_depth=2,
             min_samples_leaf=15, learning_rate=0.03, random_state=42,
         ).fit(X, y, sample_weight=sample_weight)
         for q in (0.1, 0.5, 0.9)
@@ -57,7 +57,7 @@ def main(data_path: str, output_dir: str, plegma_dir: str | None = None, plegma_
     train, test = hourly.iloc[:split], hourly.iloc[split:]
     train_y = y.iloc[:split]
     base_manual = fit_models(train[MANUAL_FEATURE_COLUMNS], train_y)
-    base_advanced = fit_models(train[ADVANCED_FEATURE_COLUMNS], train_y)
+    base_advanced = fit_models(train[ADVANCED_FEATURE_COLUMNS], train_y, squared_center=True)
     peak_threshold = float(train_y.quantile(0.90))
     peak_models = {
         "manual": fit_peak_model(train[MANUAL_FEATURE_COLUMNS], train_y, peak_threshold),
@@ -80,7 +80,7 @@ def main(data_path: str, output_dir: str, plegma_dir: str | None = None, plegma_
         expanded_y = pd.concat([train_y.reset_index(drop=True), plegma_y.reset_index(drop=True)], ignore_index=True)
         weights = pd.Series([1.0] * len(train) + [plegma_weight] * external_rows)
         expanded_manual_models = fit_models(expanded_manual, expanded_y, weights)
-        expanded_advanced_models = fit_models(expanded_advanced, expanded_y, weights)
+        expanded_advanced_models = fit_models(expanded_advanced, expanded_y, weights, squared_center=True)
         expanded_manual_metrics = evaluate(expanded_manual_models, test[MANUAL_FEATURE_COLUMNS], y.iloc[split:])
         expanded_advanced_metrics = evaluate(expanded_advanced_models, test[ADVANCED_FEATURE_COLUMNS], y.iloc[split:])
         if expanded_manual_metrics["mae_wh"] < base_manual_metrics["mae_wh"]:

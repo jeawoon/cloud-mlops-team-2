@@ -13,9 +13,9 @@
     "p10_p90_coverage_pct": 80.1
   },
   "advanced_mode": {
-    "mae_wh": 27.09,
-    "rmse_wh": 54.33,
-    "r2": 0.376,
+    "mae_wh": 30.19,
+    "rmse_wh": 50.68,
+    "r2": 0.457,
     "p10_p90_coverage_pct": 87.6
   },
   "baselines": {
@@ -26,7 +26,7 @@
   "data_period": {
     "start": "2016-01-12 17:00:00",
     "end": "2016-05-27 17:00:00",
-    "note": "기본 모드는 UCI 원본 모델을, 고급 모드는 Plegma 13가구 사계절 데이터를 추가한 모델을 사용합니다."
+    "note": "고급 모드 중앙 예측은 UCI 제곱오차 회귀 모델을 사용합니다. 고급 모드의 예측 구간은 기존 Plegma 확장 모델을 유지합니다."
   },
   "peak_prediction": {
     "definition": "next-hour usage at or above the training-period 90th percentile",
@@ -45,6 +45,7 @@
   },
   "model_selection": {
     "manual": "UCI only",
-    "advanced": "UCI + Plegma"
-  }
+    "advanced": "Central: UCI squared-error; intervals: existing model"
+  },
+  "central_model": "advanced: squared-error regression trained on UCI first 80%; manual: existing quantile regression"
 }
