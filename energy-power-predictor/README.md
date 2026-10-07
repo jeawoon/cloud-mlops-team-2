@@ -60,12 +60,21 @@ python3 train.py --data '/path/to/energydata_complete.csv' --plegma-dir 'data/pl
 
 ## 장기간 공개 전력 데이터 확장
 
-- REFIT Cleaned: `https://zenodo.org/records/5063428`, CC BY 4.0. House 11·House 2를 사용합니다. 8초 단위 전체·가전별 W 기록을 보관하며, 현재 추가 모델은 전체 전력만 사용합니다.
+- REFIT Cleaned: `https://zenodo.org/records/5063428`, CC BY 4.0. House 11·House 2를 사용합니다. 기존 웹 모델은 전체 전력만 사용하며, 아래 별도 실험 모델은 가전별 기록도 사용합니다.
 - UCI Individual Household Electric Power Consumption: `https://archive.ics.uci.edu/dataset/235/individual+household+electric+power+consumption`, CC BY 4.0. 프랑스 한 가정의 약 4년치 전체 전력을 사용합니다.
 - `python3 train_refit.py`로 `data/refit/CLEAN_House*.csv`, `data/household_power/household_power.zip`를 전처리·학습합니다. 결측·문제 기록이 많은 구간은 제외하고, 집별 학습/검증/테스트를 시간순 60/20/20으로 나눕니다. 학습 구간 중앙값으로 정규화하며, 향후 목표가 다음 구간으로 넘어가는 경계 행은 제외합니다.
 - 앱의 별도 전체 전력 예측 영역에 최근 6개 10분 구간 사용량과 장기간 중앙값을 입력합니다. 온습도가 없는 자료에 임의 날씨를 붙이지 않습니다. UCI Appliances 가전량과 전체 전력량을 합쳐 성능을 계산하지 않습니다.
 - 원본은 `data/`에 보관하며 Git에는 포함하지 않습니다. 출처·원본 MD5는 `models/refit_sources.json`, 검증 결과는 `reports/refit/evaluation.json`에 저장됩니다.
 - 기존 최근 패턴 모델은 `python3 train_recent.py --data '/path/to/energydata_complete.csv'`로 학습합니다.
+
+### 긴 과거 기록·가전별 피처 실험
+
+- `python3 train_long_history.py`: 과거 24시간·7일 요약, 전날·지난주 같은 시간 기록을 추가합니다. 동일 샘플 통합 평가에서 다음 1시간 R²는 0.6402 → 0.6746입니다.
+- `python3 train_appliance_history.py`: REFIT 가정별 모델에 9개 가전 채널의 소비량·변화·활동 상태를 추가합니다. 가정별 동일 샘플 비교에서 House11의 다음 10분 R²는 0.8646 → 0.8657, 다음 1시간은 0.8648 → 0.8607입니다. House2는 각각 0.4809 → 0.5720, 0.5468 → 0.6060입니다.
+- 가전 채널 번호는 집마다 의미가 다르며, 활동 상태는 평균 20W 초과 여부를 이용한 추정입니다. 실제 스위치 상태가 아닙니다.
+- 평가 상세: [긴 기록](evaluations/long_history/README.md), [가전별 피처](evaluations/appliance_history/README.md). 이전에 확인한 테스트 기간을 사용했으므로 새로운 미래 구간에서 재검증이 필요합니다. 특정 가정의 R²를 전체 가정 성능으로 해석하지 않습니다.
+- 새 모델은 `models/long_history_model.joblib`, `models/appliance_history_model.joblib`에 저장됩니다. 추론 함수는 각 학습 스크립트에 포함됩니다. 실제 7일 이상의 전력·가전 기록이 필요하며, 기존 6개 입력 웹 폼이나 AWS 배포 모델은 교체하지 않았습니다.
+- 검사: `python3 -m unittest test_appliance_history -v`.
 
 온습도만으로는 재실 인원, 조리, 세탁 같은 돌발 사용량을 완전히 알 수 없습니다. 따라서 이 결과는 가정의 평균적 사용 패턴을 보여주는 데모 예측이며, 예측 구간도 함께 확인해야 합니다.
 

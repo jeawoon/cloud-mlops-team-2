@@ -1,0 +1,86 @@
+{
+  "CLEAN_House11": {
+    "1": {
+      "aggregate_only": {
+        "r2": 0.864600660070148,
+        "mae_wh": 23.615050968139116,
+        "test_rows": 5853,
+        "validation_r2": 0.7537448140175403,
+        "selected_leaves": 15,
+        "train_rows": 22053,
+        "validation_rows": 7308
+      },
+      "with_appliances": {
+        "r2": 0.8656841692313649,
+        "mae_wh": 23.450989577666046,
+        "test_rows": 5853,
+        "validation_r2": 0.7674696299179934,
+        "selected_leaves": 15,
+        "train_rows": 22053,
+        "validation_rows": 7308
+      }
+    },
+    "6": {
+      "aggregate_only": {
+        "r2": 0.8647849282257407,
+        "mae_wh": 24.633733977932117,
+        "test_rows": 5694,
+        "validation_r2": 0.716462406864468,
+        "selected_leaves": 7,
+        "train_rows": 21650,
+        "validation_rows": 7157
+      },
+      "with_appliances": {
+        "r2": 0.8607124585569718,
+        "mae_wh": 24.50894171776597,
+        "test_rows": 5694,
+        "validation_r2": 0.7283819039711461,
+        "selected_leaves": 7,
+        "train_rows": 21650,
+        "validation_rows": 7157
+      }
+    }
+  },
+  "CLEAN_House2": {
+    "1": {
+      "aggregate_only": {
+        "r2": 0.480899251355004,
+        "mae_wh": 46.461178097269794,
+        "test_rows": 11674,
+        "validation_r2": 0.38378237673983884,
+        "selected_leaves": 7,
+        "train_rows": 20665,
+        "validation_rows": 11799
+      },
+      "with_appliances": {
+        "r2": 0.5719867423297555,
+        "mae_wh": 37.71631821515249,
+        "test_rows": 11674,
+        "validation_r2": 0.4772486849064952,
+        "selected_leaves": 15,
+        "train_rows": 20665,
+        "validation_rows": 11799
+      }
+    },
+    "6": {
+      "aggregate_only": {
+        "r2": 0.5468300519641938,
+        "mae_wh": 42.22477200796704,
+        "test_rows": 11609,
+        "validation_r2": 0.4234522584919872,
+        "selected_leaves": 15,
+        "train_rows": 19482,
+        "validation_rows": 11590
+      },
+      "with_appliances": {
+        "r2": 0.605961767031746,
+        "mae_wh": 37.69549004593495,
+        "test_rows": 11609,
+        "validation_r2": 0.4603411960027991,
+        "selected_leaves": 31,
+        "train_rows": 19482,
+        "validation_rows": 11590
+      }
+    }
+  }
+}
