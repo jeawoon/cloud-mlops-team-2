@@ -38,8 +38,11 @@ def get_korea_weather(city: str) -> dict:
     current = None
     for model in ("kma_seamless", "best_match"):
         params = urlencode({**base, "models": model})
-        with urlopen(f"https://api.open-meteo.com/v1/forecast?{params}", timeout=8) as response:
-            candidate = json.load(response)["current"]
+        try:
+            with urlopen(f"https://api.open-meteo.com/v1/forecast?{params}", timeout=8) as response:
+                candidate = json.load(response)["current"]
+        except (OSError, ValueError, KeyError):
+            continue
         if all(candidate.get(key) is not None for key in ("temperature_2m", "relative_humidity_2m", "weather_code", "wind_speed_10m")):
             current = candidate
             break
@@ -161,9 +164,9 @@ for step in range(forecast_hours):
         previous_for_forecast, same_hour_yesterday if advanced else None,
         recent_for_forecast,
     )
-    lower = max(0, float(models["0.1"].predict(row)[0]))
     middle = max(0, float(models["0.5"].predict(row)[0]))
-    upper = max(lower, float(models["0.9"].predict(row)[0]))
+    lower = min(middle, max(0, float(models["0.1"].predict(row)[0])))
+    upper = max(middle, float(models["0.9"].predict(row)[0]))
     forecast.append((lower, middle, upper))
     if peak_model is not None:
         peak_probabilities.append(float(peak_model.predict_proba(row)[0, 1]))
@@ -193,7 +196,7 @@ if peak_probabilities:
     peak_label = "높음" if peak_probability >= 0.60 else "주의" if peak_probability >= 0.30 else "낮음"
     st.subheader("피크 전력 발생 가능성")
     peak_col1, peak_col2 = st.columns(2)
-    peak_col1.metric("피크 발생 확률", f"{peak_probability:.0%}", peak_label)
+    peak_col1.metric("시간별 피크 확률 중 최댓값", f"{peak_probability:.0%}", peak_label)
     peak_col2.metric("가장 주의할 시간", f"{peak_hour:02d}:00")
     peak_info = bundle["metrics"].get("peak_prediction", {}).get("definition", "학습 데이터 상위 사용량 구간")
     st.caption(f"피크는 '{peak_info}'으로 정의했습니다. 직전 전력량을 입력한 고급 모드에서 생활 패턴을 더 반영합니다.")
