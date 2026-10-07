@@ -39,6 +39,15 @@ python3 train.py --data '/path/to/energydata_complete.csv' --plegma-dir 'data/pl
 
 ## 해석 주의
 
+## 장기간 공개 전력 데이터 확장
+
+- REFIT Cleaned: `https://zenodo.org/records/5063428`, CC BY 4.0. House 11·House 2를 사용합니다. 8초 단위 전체·가전별 W 기록을 보관하며, 현재 추가 모델은 전체 전력만 사용합니다.
+- UCI Individual Household Electric Power Consumption: `https://archive.ics.uci.edu/dataset/235/individual+household+electric+power+consumption`, CC BY 4.0. 프랑스 한 가정의 약 4년치 전체 전력을 사용합니다.
+- `python3 train_refit.py`로 `data/refit/CLEAN_House*.csv`, `data/household_power/household_power.zip`를 전처리·학습합니다. 결측·문제 기록이 많은 구간은 제외하고, 집별 학습/검증/테스트를 시간순 60/20/20으로 나눕니다. 학습 구간 중앙값으로 정규화하며, 향후 목표가 다음 구간으로 넘어가는 경계 행은 제외합니다.
+- 앱의 별도 전체 전력 예측 영역에 최근 6개 10분 구간 사용량과 장기간 중앙값을 입력합니다. 온습도가 없는 자료에 임의 날씨를 붙이지 않습니다. UCI Appliances 가전량과 전체 전력량을 합쳐 성능을 계산하지 않습니다.
+- 원본은 `data/`에 보관하며 Git에는 포함하지 않습니다. 출처·원본 MD5는 `models/refit_sources.json`, 검증 결과는 `reports/refit/evaluation.json`에 저장됩니다.
+- 기존 최근 패턴 모델은 `python3 train_recent.py --data '/path/to/energydata_complete.csv'`로 학습합니다.
+
 온습도만으로는 재실 인원, 조리, 세탁 같은 돌발 사용량을 완전히 알 수 없습니다. 따라서 이 결과는 가정의 평균적 사용 패턴을 보여주는 데모 예측이며, 예측 구간도 함께 확인해야 합니다.
 
 전기요금은 한전 주택용 저압·고압 누진 전력량요금을 바탕으로 한 다음 1시간의 **추가 예상요금**입니다. 기본요금, 할인, TV수신료, 청구 단위 반올림은 포함하지 않습니다. 실제 청구액은 [한전 전기요금 계산기](https://home.kepco.co.kr/kepco/front/html/CY/J/A/CYJAPP002.html)로 확인하세요.

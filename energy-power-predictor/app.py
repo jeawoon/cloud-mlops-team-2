@@ -217,3 +217,43 @@ if selection:
 data_note = bundle["metrics"].get("data_period", {}).get("note")
 if data_note:
     st.info(data_note)
+
+recent_path = ROOT / 'models' / 'recent_model.joblib'
+if recent_path.exists():
+    with st.expander('최근 10분 전력 패턴으로 예측', expanded=False):
+        from train_recent import recent_row
+        st.caption('최근에 끝난 10분 구간부터 오래된 순서로 입력하세요. 각 값은 해당 10분 동안 사용한 에너지(Wh)입니다.')
+        recent = []
+        for index in range(6):
+            recent.append(st.number_input(f'{index*10}~{(index+1)*10}분 전 사용량 (Wh)', min_value=0.0, value=80.0, step=5.0, key=f'recent_wh_{index}'))
+        minutes = st.selectbox('최근 패턴 예측 기간', [10, 60], format_func=lambda x: f'다음 {x}분')
+        recent_bundle = joblib.load(recent_path)
+        key = str(minutes//10)
+        features = recent_row(indoor_temp, indoor_humidity, outdoor_temp, outdoor_humidity, hour, weekday, recent)
+        estimate = max(0.0, float(recent_bundle['models'][key].predict(features)[0]))
+        use_kwh = estimate * (minutes/10) / 1000
+        st.metric(f'다음 {minutes}분 누적 예상 사용량', f'{use_kwh:.3f} kWh')
+        _, cost = estimate_incremental_cost(monthly_kwh, use_kwh, tariff)
+        st.metric(f'다음 {minutes}분 추가 예상요금', f'약 {cost:.0f}원')
+        result = recent_bundle['metrics'][key]['test']
+        st.caption(f"시간 순서 테스트: R² {result['r2']}, MAE {result['mae_wh']} Wh/10분. 최근 증가량·평균·변동폭을 함께 사용합니다.")
+
+refit_path = ROOT / 'models' / 'refit_model.joblib'
+if refit_path.exists():
+    with st.expander('REFIT·UCI 장기간 데이터 기반 가정 전체 전력 예측'):
+        from train_refit import row as refit_row
+        st.caption('영국 REFIT·프랑스 UCI 장기간 전체 전력으로 학습한 별도 모델입니다. 기존 UCI 가전 전력 모델과 예측 대상이 다릅니다. 온습도는 이 모델에서 사용하지 않습니다.')
+        typical_wh = st.number_input('최근 장기간 전체 전력 사용량 중앙값 (Wh/10분)', min_value=1.0, value=80.0, step=5.0)
+        refit_recent = [st.number_input(f'전체 전력 {i*10}~{(i+1)*10}분 전 (Wh)', min_value=0.0, value=80.0, step=5.0, key=f'refit_wh_{i}') for i in range(6)]
+        refit_minutes = st.selectbox('전체 전력 예측 기간', [10, 60], format_func=lambda x: f'다음 {x}분')
+        refit_bundle = joblib.load(refit_path)
+        key = str(refit_minutes//10)
+        refit_features = refit_row(refit_recent, typical_wh, hour, weekday)
+        wh = max(0.0, float(refit_bundle['models'][key].predict(refit_features)[0])*typical_wh)
+        kwh = wh*(refit_minutes/10)/1000
+        st.metric('전체 전력 누적 예상 사용량', f'{kwh:.3f} kWh')
+        _, refit_cost = estimate_incremental_cost(monthly_kwh, kwh, tariff)
+        st.metric('전체 전력 추가 예상요금', f'약 {refit_cost:.0f}원')
+        st.caption(f"공개 데이터 가구별 정규화 테스트 R²: {refit_bundle['metrics'][key]['r2']}. 다른 집에서도 같은 성능을 보장하는 수치는 아닙니다.")
+        st.markdown('[데이터 출처: REFIT, CC BY 4.0](https://zenodo.org/records/5063428)')
+        st.markdown('[데이터 출처: UCI Household Power, CC BY 4.0](https://archive.ics.uci.edu/dataset/235/individual+household+electric+power+consumption)')

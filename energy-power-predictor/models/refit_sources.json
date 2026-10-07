@@ -1,0 +1,22 @@
+{
+  "source": "https://zenodo.org/records/5063428",
+  "additional_source": "https://archive.ics.uci.edu/dataset/235/individual+household+electric+power+consumption",
+  "license": "CC-BY-4.0",
+  "files": [
+    {
+      "file": "CLEAN_House11.csv",
+      "md5": "5b41bae97ab28871fcfe5167b41c0347",
+      "training_median_wh": 30.920833333333334
+    },
+    {
+      "file": "CLEAN_House2.csv",
+      "md5": "13957fd139bf8f6ba8bceea36e85bb3d",
+      "training_median_wh": 26.094239496413408
+    },
+    {
+      "file": "household_power.zip",
+      "md5": "41f51806846b6b567b8ae701a300a3de",
+      "training_median_wh": 108.83333333333333
+    }
+  ]
+}
