@@ -11,3 +11,5 @@ __pycache__/
 *.pem
 *.key
 models/sample_*/
+models/plegma_*/
+data/
