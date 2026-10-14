@@ -1,0 +1,770 @@
+{
+  "model_sha256": "0b92769f45a1aec9c66d01c4c0aef3ab91f360c80e93579127fd7fe1eedbd2df",
+  "unit": "Wh per 10 minutes (hourly average)",
+  "test_rows": 653,
+  "peak_threshold_wh": 210.0,
+  "modes": {
+    "manual": {
+      "groups": {
+        "전체": {
+          "count": 653,
+          "mae_wh": 33.39,
+          "rmse_wh": 65.2,
+          "bias_wh": -16.98
+        },
+        "평상시": {
+          "count": 604,
+          "mae_wh": 19.86,
+          "rmse_wh": 31.15,
+          "bias_wh": -2.12
+        },
+        "피크": {
+          "count": 49,
+          "mae_wh": 200.2,
+          "rmse_wh": 211.4,
+          "bias_wh": -200.2
+        },
+        "급상승": {
+          "count": 4,
+          "mae_wh": 313.08,
+          "rmse_wh": 319.02,
+          "bias_wh": -313.08
+        }
+      },
+      "by_hour": [
+        {
+          "hour": 0,
+          "count": 27,
+          "mae_wh": 3.72,
+          "rmse_wh": 4.72,
+          "bias_wh": 1.47
+        },
+        {
+          "hour": 1,
+          "count": 27,
+          "mae_wh": 3.26,
+          "rmse_wh": 4.23,
+          "bias_wh": -0.5
+        },
+        {
+          "hour": 2,
+          "count": 27,
+          "mae_wh": 3.46,
+          "rmse_wh": 5.0,
+          "bias_wh": 0.61
+        },
+        {
+          "hour": 3,
+          "count": 27,
+          "mae_wh": 4.27,
+          "rmse_wh": 5.32,
+          "bias_wh": 0.48
+        },
+        {
+          "hour": 4,
+          "count": 27,
+          "mae_wh": 3.39,
+          "rmse_wh": 3.97,
+          "bias_wh": 0.14
+        },
+        {
+          "hour": 5,
+          "count": 27,
+          "mae_wh": 8.01,
+          "rmse_wh": 15.03,
+          "bias_wh": -5.96
+        },
+        {
+          "hour": 6,
+          "count": 27,
+          "mae_wh": 12.38,
+          "rmse_wh": 22.79,
+          "bias_wh": -8.43
+        },
+        {
+          "hour": 7,
+          "count": 27,
+          "mae_wh": 36.61,
+          "rmse_wh": 59.9,
+          "bias_wh": -31.53
+        },
+        {
+          "hour": 8,
+          "count": 27,
+          "mae_wh": 55.4,
+          "rmse_wh": 76.1,
+          "bias_wh": -38.86
+        },
+        {
+          "hour": 9,
+          "count": 27,
+          "mae_wh": 52.38,
+          "rmse_wh": 83.53,
+          "bias_wh": -29.36
+        },
+        {
+          "hour": 10,
+          "count": 27,
+          "mae_wh": 54.52,
+          "rmse_wh": 85.84,
+          "bias_wh": -27.37
+        },
+        {
+          "hour": 11,
+          "count": 27,
+          "mae_wh": 67.78,
+          "rmse_wh": 114.77,
+          "bias_wh": -40.68
+        },
+        {
+          "hour": 12,
+          "count": 27,
+          "mae_wh": 48.73,
+          "rmse_wh": 70.05,
+          "bias_wh": -26.55
+        },
+        {
+          "hour": 13,
+          "count": 27,
+          "mae_wh": 50.87,
+          "rmse_wh": 83.69,
+          "bias_wh": -25.57
+        },
+        {
+          "hour": 14,
+          "count": 28,
+          "mae_wh": 35.02,
+          "rmse_wh": 65.39,
+          "bias_wh": -17.26
+        },
+        {
+          "hour": 15,
+          "count": 28,
+          "mae_wh": 35.28,
+          "rmse_wh": 64.03,
+          "bias_wh": -15.84
+        },
+        {
+          "hour": 16,
+          "count": 28,
+          "mae_wh": 63.81,
+          "rmse_wh": 114.87,
+          "bias_wh": -50.69
+        },
+        {
+          "hour": 17,
+          "count": 28,
+          "mae_wh": 104.68,
+          "rmse_wh": 133.67,
+          "bias_wh": -94.75
+        },
+        {
+          "hour": 18,
+          "count": 28,
+          "mae_wh": 54.54,
+          "rmse_wh": 86.03,
+          "bias_wh": -22.33
+        },
+        {
+          "hour": 19,
+          "count": 27,
+          "mae_wh": 26.65,
+          "rmse_wh": 36.88,
+          "bias_wh": 9.81
+        },
+        {
+          "hour": 20,
+          "count": 27,
+          "mae_wh": 27.17,
+          "rmse_wh": 40.92,
+          "bias_wh": 2.6
+        },
+        {
+          "hour": 21,
+          "count": 27,
+          "mae_wh": 27.13,
+          "rmse_wh": 32.66,
+          "bias_wh": 16.18
+        },
+        {
+          "hour": 22,
+          "count": 27,
+          "mae_wh": 9.63,
+          "rmse_wh": 10.8,
+          "bias_wh": 3.99
+        },
+        {
+          "hour": 23,
+          "count": 27,
+          "mae_wh": 8.04,
+          "rmse_wh": 18.71,
+          "bias_wh": -2.84
+        }
+      ],
+      "worst": [
+        {
+          "target_time": "2016-05-26 16:00:00",
+          "actual": 495.0,
+          "predicted": 77.08,
+          "abs_error": 417.92,
+          "peak": true,
+          "previous_wh": 61.67,
+          "jump": true
+        },
+        {
+          "target_time": "2016-05-21 11:00:00",
+          "actual": 431.67,
+          "predicted": 84.1,
+          "abs_error": 347.57,
+          "peak": true,
+          "previous_wh": 383.33,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-26 17:00:00",
+          "actual": 440.0,
+          "predicted": 96.84,
+          "abs_error": 343.16,
+          "peak": true,
+          "previous_wh": 495.0,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-21 10:00:00",
+          "actual": 383.33,
+          "predicted": 81.36,
+          "abs_error": 301.97,
+          "peak": true,
+          "previous_wh": 310.0,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-27 18:00:00",
+          "actual": 430.0,
+          "predicted": 136.96,
+          "abs_error": 293.04,
+          "peak": true,
+          "previous_wh": 180.0,
+          "jump": true
+        },
+        {
+          "target_time": "2016-05-21 15:00:00",
+          "actual": 361.67,
+          "predicted": 86.75,
+          "abs_error": 274.91,
+          "peak": true,
+          "previous_wh": 303.33,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-23 17:00:00",
+          "actual": 380.0,
+          "predicted": 105.43,
+          "abs_error": 274.57,
+          "peak": true,
+          "previous_wh": 156.67,
+          "jump": true
+        },
+        {
+          "target_time": "2016-05-13 11:00:00",
+          "actual": 355.0,
+          "predicted": 88.19,
+          "abs_error": 266.81,
+          "peak": true,
+          "previous_wh": 73.33,
+          "jump": true
+        },
+        {
+          "target_time": "2016-05-13 16:00:00",
+          "actual": 351.67,
+          "predicted": 89.25,
+          "abs_error": 262.42,
+          "peak": true,
+          "previous_wh": 201.67,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-21 13:00:00",
+          "actual": 343.33,
+          "predicted": 86.8,
+          "abs_error": 256.54,
+          "peak": true,
+          "previous_wh": 228.33,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-22 11:00:00",
+          "actual": 343.33,
+          "predicted": 88.62,
+          "abs_error": 254.71,
+          "peak": true,
+          "previous_wh": 201.67,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-13 08:00:00",
+          "actual": 338.33,
+          "predicted": 85.3,
+          "abs_error": 253.04,
+          "peak": true,
+          "previous_wh": 176.67,
+          "jump": false
+        },
+        {
+          "target_time": "2016-04-30 16:00:00",
+          "actual": 320.0,
+          "predicted": 76.92,
+          "abs_error": 243.08,
+          "peak": true,
+          "previous_wh": 181.67,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-21 09:00:00",
+          "actual": 310.0,
+          "predicted": 75.79,
+          "abs_error": 234.21,
+          "peak": true,
+          "previous_wh": 208.33,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-13 14:00:00",
+          "actual": 318.33,
+          "predicted": 87.31,
+          "abs_error": 231.02,
+          "peak": true,
+          "previous_wh": 268.33,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-27 11:00:00",
+          "actual": 310.0,
+          "predicted": 80.16,
+          "abs_error": 229.84,
+          "peak": true,
+          "previous_wh": 251.67,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-21 14:00:00",
+          "actual": 303.33,
+          "predicted": 86.23,
+          "abs_error": 217.1,
+          "peak": true,
+          "previous_wh": 343.33,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-13 12:00:00",
+          "actual": 301.67,
+          "predicted": 89.08,
+          "abs_error": 212.59,
+          "peak": true,
+          "previous_wh": 355.0,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-01 17:00:00",
+          "actual": 303.33,
+          "predicted": 92.08,
+          "abs_error": 211.25,
+          "peak": true,
+          "previous_wh": 215.0,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-13 18:00:00",
+          "actual": 348.33,
+          "predicted": 140.29,
+          "abs_error": 208.04,
+          "peak": true,
+          "previous_wh": 231.67,
+          "jump": false
+        }
+      ],
+      "peak_squared_error_share_pct": 78.9
+    },
+    "advanced": {
+      "groups": {
+        "전체": {
+          "count": 653,
+          "mae_wh": 30.19,
+          "rmse_wh": 50.68,
+          "bias_wh": 2.65
+        },
+        "평상시": {
+          "count": 604,
+          "mae_wh": 23.47,
+          "rmse_wh": 36.77,
+          "bias_wh": 11.63
+        },
+        "피크": {
+          "count": 49,
+          "mae_wh": 113.1,
+          "rmse_wh": 132.53,
+          "bias_wh": -108.04
+        },
+        "급상승": {
+          "count": 4,
+          "mae_wh": 260.6,
+          "rmse_wh": 276.88,
+          "bias_wh": -260.6
+        }
+      },
+      "by_hour": [
+        {
+          "hour": 0,
+          "count": 27,
+          "mae_wh": 5.1,
+          "rmse_wh": 6.39,
+          "bias_wh": -1.56
+        },
+        {
+          "hour": 1,
+          "count": 27,
+          "mae_wh": 5.77,
+          "rmse_wh": 7.01,
+          "bias_wh": -4.58
+        },
+        {
+          "hour": 2,
+          "count": 27,
+          "mae_wh": 4.73,
+          "rmse_wh": 5.77,
+          "bias_wh": -2.54
+        },
+        {
+          "hour": 3,
+          "count": 27,
+          "mae_wh": 4.73,
+          "rmse_wh": 5.75,
+          "bias_wh": -0.47
+        },
+        {
+          "hour": 4,
+          "count": 27,
+          "mae_wh": 3.06,
+          "rmse_wh": 3.77,
+          "bias_wh": -1.05
+        },
+        {
+          "hour": 5,
+          "count": 27,
+          "mae_wh": 9.29,
+          "rmse_wh": 15.82,
+          "bias_wh": -6.55
+        },
+        {
+          "hour": 6,
+          "count": 27,
+          "mae_wh": 13.92,
+          "rmse_wh": 22.59,
+          "bias_wh": -4.01
+        },
+        {
+          "hour": 7,
+          "count": 27,
+          "mae_wh": 34.38,
+          "rmse_wh": 47.98,
+          "bias_wh": -12.3
+        },
+        {
+          "hour": 8,
+          "count": 27,
+          "mae_wh": 44.88,
+          "rmse_wh": 64.3,
+          "bias_wh": -6.62
+        },
+        {
+          "hour": 9,
+          "count": 27,
+          "mae_wh": 56.24,
+          "rmse_wh": 71.27,
+          "bias_wh": 15.45
+        },
+        {
+          "hour": 10,
+          "count": 27,
+          "mae_wh": 41.21,
+          "rmse_wh": 53.51,
+          "bias_wh": 11.72
+        },
+        {
+          "hour": 11,
+          "count": 27,
+          "mae_wh": 48.42,
+          "rmse_wh": 74.08,
+          "bias_wh": -3.3
+        },
+        {
+          "hour": 12,
+          "count": 27,
+          "mae_wh": 30.51,
+          "rmse_wh": 44.56,
+          "bias_wh": 11.05
+        },
+        {
+          "hour": 13,
+          "count": 27,
+          "mae_wh": 36.13,
+          "rmse_wh": 47.24,
+          "bias_wh": 6.06
+        },
+        {
+          "hour": 14,
+          "count": 28,
+          "mae_wh": 36.73,
+          "rmse_wh": 51.74,
+          "bias_wh": 20.69
+        },
+        {
+          "hour": 15,
+          "count": 28,
+          "mae_wh": 29.92,
+          "rmse_wh": 38.86,
+          "bias_wh": 14.95
+        },
+        {
+          "hour": 16,
+          "count": 28,
+          "mae_wh": 58.85,
+          "rmse_wh": 102.92,
+          "bias_wh": -16.61
+        },
+        {
+          "hour": 17,
+          "count": 28,
+          "mae_wh": 77.83,
+          "rmse_wh": 93.15,
+          "bias_wh": -44.51
+        },
+        {
+          "hour": 18,
+          "count": 28,
+          "mae_wh": 78.39,
+          "rmse_wh": 90.22,
+          "bias_wh": 46.88
+        },
+        {
+          "hour": 19,
+          "count": 27,
+          "mae_wh": 29.72,
+          "rmse_wh": 36.8,
+          "bias_wh": 24.78
+        },
+        {
+          "hour": 20,
+          "count": 27,
+          "mae_wh": 25.78,
+          "rmse_wh": 41.53,
+          "bias_wh": -0.12
+        },
+        {
+          "hour": 21,
+          "count": 27,
+          "mae_wh": 23.3,
+          "rmse_wh": 27.74,
+          "bias_wh": 15.53
+        },
+        {
+          "hour": 22,
+          "count": 27,
+          "mae_wh": 9.74,
+          "rmse_wh": 12.44,
+          "bias_wh": 4.67
+        },
+        {
+          "hour": 23,
+          "count": 27,
+          "mae_wh": 11.2,
+          "rmse_wh": 18.45,
+          "bias_wh": -4.22
+        }
+      ],
+      "worst": [
+        {
+          "target_time": "2016-05-26 16:00:00",
+          "actual": 495.0,
+          "predicted": 76.13,
+          "abs_error": 418.87,
+          "peak": true,
+          "previous_wh": 61.67,
+          "jump": true
+        },
+        {
+          "target_time": "2016-05-13 11:00:00",
+          "actual": 355.0,
+          "predicted": 120.02,
+          "abs_error": 234.98,
+          "peak": true,
+          "previous_wh": 73.33,
+          "jump": true
+        },
+        {
+          "target_time": "2016-05-23 17:00:00",
+          "actual": 380.0,
+          "predicted": 170.0,
+          "abs_error": 210.0,
+          "peak": true,
+          "previous_wh": 156.67,
+          "jump": true
+        },
+        {
+          "target_time": "2016-05-26 17:00:00",
+          "actual": 440.0,
+          "predicted": 247.77,
+          "abs_error": 192.23,
+          "peak": true,
+          "previous_wh": 495.0,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-21 11:00:00",
+          "actual": 431.67,
+          "predicted": 247.64,
+          "abs_error": 184.03,
+          "peak": true,
+          "previous_wh": 383.33,
+          "jump": false
+        },
+        {
+          "target_time": "2016-04-30 18:00:00",
+          "actual": 70.0,
+          "predicted": 250.43,
+          "abs_error": 180.43,
+          "peak": false,
+          "previous_wh": 265.0,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-13 08:00:00",
+          "actual": 338.33,
+          "predicted": 159.14,
+          "abs_error": 179.19,
+          "peak": true,
+          "previous_wh": 176.67,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-27 18:00:00",
+          "actual": 430.0,
+          "predicted": 251.45,
+          "abs_error": 178.55,
+          "peak": true,
+          "previous_wh": 180.0,
+          "jump": true
+        },
+        {
+          "target_time": "2016-05-21 16:00:00",
+          "actual": 100.0,
+          "predicted": 273.54,
+          "abs_error": 173.54,
+          "peak": false,
+          "previous_wh": 361.67,
+          "jump": false
+        },
+        {
+          "target_time": "2016-04-30 16:00:00",
+          "actual": 320.0,
+          "predicted": 153.13,
+          "abs_error": 166.87,
+          "peak": true,
+          "previous_wh": 181.67,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-22 11:00:00",
+          "actual": 343.33,
+          "predicted": 181.51,
+          "abs_error": 161.82,
+          "peak": true,
+          "previous_wh": 201.67,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-13 09:00:00",
+          "actual": 93.33,
+          "predicted": 247.49,
+          "abs_error": 154.15,
+          "peak": false,
+          "previous_wh": 338.33,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-21 09:00:00",
+          "actual": 310.0,
+          "predicted": 159.59,
+          "abs_error": 150.41,
+          "peak": true,
+          "previous_wh": 208.33,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-22 12:00:00",
+          "actual": 126.67,
+          "predicted": 275.91,
+          "abs_error": 149.24,
+          "peak": false,
+          "previous_wh": 343.33,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-03 17:00:00",
+          "actual": 245.0,
+          "predicted": 97.49,
+          "abs_error": 147.51,
+          "peak": true,
+          "previous_wh": 65.0,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-13 16:00:00",
+          "actual": 351.67,
+          "predicted": 205.07,
+          "abs_error": 146.6,
+          "peak": true,
+          "previous_wh": 201.67,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-21 10:00:00",
+          "actual": 383.33,
+          "predicted": 237.04,
+          "abs_error": 146.29,
+          "peak": true,
+          "previous_wh": 310.0,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-16 14:00:00",
+          "actual": 88.33,
+          "predicted": 233.96,
+          "abs_error": 145.63,
+          "peak": false,
+          "previous_wh": 266.67,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-06 07:00:00",
+          "actual": 246.67,
+          "predicted": 103.46,
+          "abs_error": 143.21,
+          "peak": true,
+          "previous_wh": 73.33,
+          "jump": false
+        },
+        {
+          "target_time": "2016-05-06 10:00:00",
+          "actual": 90.0,
+          "predicted": 232.87,
+          "abs_error": 142.87,
+          "peak": false,
+          "previous_wh": 273.33,
+          "jump": false
+        }
+      ],
+      "peak_squared_error_share_pct": 51.3
+    }
+  }
+}

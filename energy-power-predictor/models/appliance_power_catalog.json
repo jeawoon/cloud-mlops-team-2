@@ -1,0 +1,71 @@
+{
+  "source": "https://zenodo.org/records/5063428",
+  "license": "CC-BY-4.0",
+  "house": "House2",
+  "note": "Appliance active/standby W statistics only. No whole-house forecast model. Defaults do not establish scenario accuracy.",
+  "profiles": {
+    "Appliance1": {
+      "label": "냉장·냉동고",
+      "active_w": 87.99,
+      "standby_w": 1.02,
+      "on_samples": 1751920,
+      "threshold_w": 20
+    },
+    "Appliance2": {
+      "label": "세탁기",
+      "active_w": 482.37,
+      "standby_w": 0.14,
+      "on_samples": 154813,
+      "threshold_w": 20
+    },
+    "Appliance3": {
+      "label": "식기세척기",
+      "active_w": 787.29,
+      "standby_w": 0.02,
+      "on_samples": 325053,
+      "threshold_w": 20
+    },
+    "Appliance4": {
+      "label": "TV",
+      "active_w": 44.01,
+      "standby_w": 0.03,
+      "on_samples": 383539,
+      "threshold_w": 20
+    },
+    "Appliance5": {
+      "label": "전자레인지",
+      "active_w": 360.29,
+      "standby_w": 0.01,
+      "on_samples": 28402,
+      "threshold_w": 20
+    },
+    "Appliance6": {
+      "label": "토스터",
+      "active_w": 612.32,
+      "standby_w": 0,
+      "on_samples": 9814,
+      "threshold_w": 20
+    },
+    "Appliance7": {
+      "label": "오디오",
+      "active_w": 21.87,
+      "standby_w": 1.92,
+      "on_samples": 9509,
+      "threshold_w": 20
+    },
+    "Appliance8": {
+      "label": "전기포트",
+      "active_w": 2295.95,
+      "standby_w": 0,
+      "on_samples": 40606,
+      "threshold_w": 20
+    },
+    "Appliance9": {
+      "label": "오븐 환풍기",
+      "active_w": 58.07,
+      "standby_w": 0,
+      "on_samples": 25714,
+      "threshold_w": 20
+    }
+  }
+}

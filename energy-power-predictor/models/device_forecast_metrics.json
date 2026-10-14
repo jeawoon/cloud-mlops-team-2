@@ -1,0 +1,96 @@
+{
+  "fridge": {
+    "label": "냉장·냉동고",
+    "source": "https://zenodo.org/records/5063428",
+    "license": "CC-BY-4.0",
+    "house": "House2",
+    "channel": "Appliance1",
+    "target": "next completed 10-minute appliance Wh",
+    "selected": "hist_15",
+    "validation": {
+      "hist_7": {
+        "r2": 0.7626409819450084,
+        "mae_wh": 1.8961622585326452,
+        "rmse_wh": 3.204887586086551
+      },
+      "hist_15": {
+        "r2": 0.7646355049223484,
+        "mae_wh": 1.8523268208194854,
+        "rmse_wh": 3.1913938770045207
+      },
+      "hist_31": {
+        "r2": 0.7622784713095373,
+        "mae_wh": 1.8490504490264732,
+        "rmse_wh": 3.2073340121511844
+      },
+      "extra_trees": {
+        "r2": 0.7575777558395485,
+        "mae_wh": 1.916908210109497,
+        "rmse_wh": 3.2388897582064375
+      }
+    },
+    "test": {
+      "r2": 0.789664106666061,
+      "mae_wh": 1.7324068422663845,
+      "rmse_wh": 3.021527631496897
+    },
+    "persistence_test": {
+      "r2": 0.34448496172233745,
+      "mae_wh": 2.9055470269415458,
+      "rmse_wh": 5.334100631199611
+    },
+    "train_rows": 29235,
+    "validation_rows": 15885,
+    "test_rows": 14933,
+    "test_start": "2015-01-24 20:40:00",
+    "test_end": "2015-05-28 07:50:00",
+    "note": "Only this appliance historical energy and calendar features. No whole-house features. Not a planned complete-cycle scenario test; previously inspected time period needs independent future confirmation."
+  },
+  "dishwasher": {
+    "label": "식기세척기",
+    "source": "https://zenodo.org/records/5063428",
+    "license": "CC-BY-4.0",
+    "house": "House2",
+    "channel": "Appliance3",
+    "target": "next completed 10-minute appliance Wh",
+    "selected": "extra_trees",
+    "validation": {
+      "hist_7": {
+        "r2": 0.8097781862440631,
+        "mae_wh": 3.577760259911814,
+        "rmse_wh": 24.597171025203618
+      },
+      "hist_15": {
+        "r2": 0.8110116914462995,
+        "mae_wh": 3.4387263587443413,
+        "rmse_wh": 24.51729037285349
+      },
+      "hist_31": {
+        "r2": 0.8150234492318491,
+        "mae_wh": 3.3467306506577628,
+        "rmse_wh": 24.255673615495834
+      },
+      "extra_trees": {
+        "r2": 0.9094108345293618,
+        "mae_wh": 3.134146156822307,
+        "rmse_wh": 16.974349150572376
+      }
+    },
+    "test": {
+      "r2": 0.9303351627362653,
+      "mae_wh": 2.403510578190099,
+      "rmse_wh": 13.517682344377777
+    },
+    "persistence_test": {
+      "r2": -0.19776738429972007,
+      "mae_wh": 12.875783239333398,
+      "rmse_wh": 56.050780517027796
+    },
+    "train_rows": 29235,
+    "validation_rows": 15885,
+    "test_rows": 14933,
+    "test_start": "2015-01-24 20:40:00",
+    "test_end": "2015-05-28 07:50:00",
+    "note": "Only this appliance historical energy and calendar features. No whole-house features. Not a planned complete-cycle scenario test; previously inspected time period needs independent future confirmation."
+  }
+}

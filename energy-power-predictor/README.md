@@ -1,36 +1,60 @@
-# 가정 전력 사용량 예측 데모
+# 가전별 예상 사용량·요금
 
-`energydata_complete.csv`로 학습해 현재 실내외 온도·습도·날씨·시간대에 따른 **다음 1시간 평균** 가전 전력량(Wh/10분)을 예측합니다.
+이전 버전과 달라진 입력·화면·학습 모델·R²·요금 계산·API·AWS 배포 결과는 [상세 변경 기록](CHANGELOG.md)에서 확인하세요. 현재 기능 버전은 `6473f05`이며, 이후 변경 이력 문서 추가는 재학습이나 성능 개선을 의미하지 않습니다.
+
+기존 집 전체 모델·화면·API는 제거했습니다. 원본 데이터는 보존하고 제거 모델과 이전 코드는 `work/removed-wholehouse-cGCHNA/`에 복구 가능하게 보관합니다. 이 폴더는 Git 제외입니다. 기존 UCI 가전 모델도 오프라인 연구 자료로 보존하지만 현재 앱/API에서는 사용하지 않습니다.
+
+## 현재 기능
+- 기본 화면은 9종 가전을 여러 개 선택하는 사용 계획 화면입니다. 시간·소비전력·가동률·대수·시작 지연을 입력하면 가전별 Wh/kWh·요금과 선택 계획의 합계를 표시합니다. 기본 W는 보존한 REFIT 가전 통계 숫자만 사용하며 집 전체 모델은 복원하지 않습니다. 냉장고 가동률 기본 50% 등은 예시 가정이며 실제 내 제품의 값이 아닙니다.
+- 각 가전의 계산 방식에서 시간·소비전력 계산 또는 지원되는 학습 모델을 고릅니다. 시간·소비전력 계산은 평균 W × 시간 × 대수이고 이 방식의 R²는 미검증입니다. 세탁코스와 10분 예측이 섞이면 합계는 각 선택 계획의 에너지 합이지 집 전체 또는 공통 10분 구간 예측이 아닙니다. 고정 단가에서는 시작 지연이 요금을 바꾸지 않습니다.
+- 세탁기: LARCO 실측 운전 조건으로 **코스 1회 전체** 에너지와 소요시간 예측.
+- 냉장·냉동고 / 식기세척기: REFIT House2 해당 가전 최근 완료 구간 6개와 시각·요일로 **다음 10분** 에너지 예측. 집 전체나 다른 가전 피처는 사용하지 않습니다.
+- 예상 kWh × 입력 단가(원/kWh)로 요금을 계산합니다. 기본 200원은 예시이고 공식 요율이 아닙니다. 누진·기본요금·세금·할인은 별도 계산하지 않습니다.
+
+## 실측 테스트 결과
+| 대상 | 예측 범위 | 테스트 | R² | MAE |
+|---|---|---:|---:|---:|
+| 세탁기 | 코스 1회 완료 | 131회 | 0.8835 | 98.63Wh |
+| 냉장·냉동고 | 다음 10분 | 14,933건 | 0.7897 | 1.73Wh |
+| 식기세척기 | 다음 10분 | 14,933건 | 0.9303 | 2.40Wh |
+
+세탁기와 두 가전의 데이터·예측 대상·기간이 달라 점수를 직접 비교하거나 합쳐서는 안 됩니다. 냉장고·식기세척기의 임의 켜짐 계획, 설정 온도, 코스 1회 결과에 대한 R²는 검증되지 않았습니다. 실제 최근 측정값 대신 데모값을 입력한 성능도 보장하지 않습니다.
+
+## 데이터·평가
+[LARCO 공식 데이터](https://zenodo.org/records/18657997), CC BY 4.0: 실험실 세탁기 유효 코스 642회, 제품별 획득 시각순 60/20/20(383/128/131회). 실제 소비전력이 정답이며 모델·프로그램·설정 온도·주변 온도·목표 무게만 입력합니다. 실제 종료시간·소비전력 통계·작동 후 온도·KPI는 입력하지 않습니다. 원본 요약 약 1.3MB는 `data/larco/`에 보존합니다. 새로운 제품·한국 가정 성능은 검증되지 않았습니다.
+
+[REFIT 공식 데이터](https://zenodo.org/records/5063428), CC BY 4.0: House2의 Appliance1(냉장·냉동고), Appliance3(식기세척기). MD5 검증 후 센서 문제 행·범위 초과·10분 내 유효 60개 미만 측정은 제외합니다. 완료 시각으로 10분 구간을 라벨링합니다. 가전별 앞 60% 학습, 다음 20% 검증, 뒤 20% 테스트로 나누고 미래 목표가 경계를 넘는 행을 제외합니다. 검증 R²로 모델 선택 후 학습+검증 재학습합니다. 테스트는 이전에도 본 기간이므로 독립적인 새 미래 데이터 확인이 필요합니다.
 
 ## 실행
-
+같은 폴더에서 첫 터미널:
 ```bash
-cd energy-power-predictor
-python3 -m pip install -r requirements.txt
-python3 train.py --data '/path/to/energydata_complete.csv' --output models
-streamlit run app.py
+python3 api.py --port 8000
 ```
+두 번째 터미널:
+```bash
+python3 -m streamlit run app.py
+```
+웹 주소: http://127.0.0.1:8501
+다른 API 주소는 `PREDICTION_API_URL`로 설정합니다.
 
-## 처리 방식
+## 재학습
+```bash
+python3 fetch_larco.py
+python3 train_larco.py
+python3 train_device_forecasts.py
+```
+REFIT House2 원본은 `data/refit/CLEAN_House2.csv`가 필요합니다. 다운로드·학습 자료는 Git에 포함하지 않습니다. 기존 원본은 삭제하지 않았습니다.
 
-- 10분 단위 기록을 시간별 평균으로 집계해 돌발 사용량의 영향을 줄입니다.
-- 시간 순서를 보존해 앞 80%로 학습하고 뒤 20%로 성능을 평가합니다.
-- 실내 센서 `T1~T9`, `RH_1~RH_9`는 평균으로 통합합니다.
-- `rv1`, `rv2`는 무작위 변수이므로 사용하지 않습니다.
-- 시간대·요일·월을 순환형 특성으로, 실내외 온도 차와 냉난방 필요도를 추가합니다.
-- 기본 모드는 환경·시간 정보만, 고급 모드는 직전 1시간 사용량까지 사용합니다.
-- 고급 모드는 직전 1시간, 최근 3시간 평균, 어제 같은 시간 사용량을 함께 사용합니다.
-- 각 모드의 P10·P50·P90 분위수 회귀 모델이 예상값과 예측 구간을 만듭니다.
-- 원본 CSV에는 날씨 범주가 없어서 학습 시 실외 온도·습도에 따른 데모 범주를 생성합니다. 실제 사용 시에는 사용자가 선택한 날씨를 반영합니다.
+## API
+- POST /api/appliance-plan: plans(device=Appliance1..9, quantity, method, start_after_minutes, settings), 선택적 unit_price_krw_per_kwh. method는 power_time/laundry_cycle/recent_forecast이며 가전별 지원 범위가 다릅니다. 개별 검증 지표는 학습 모드에만 표시하고 전체 plan_r2는 null입니다.
+- GET /api/health, /api/docs
+- GET /api/laundry-cycle/catalog
+- POST /api/laundry-cycle: machine, program, heat, load_kg, ambient_temp, 선택적 unit_price_krw_per_kwh
+- GET /api/device-forecast/catalog
+- POST /api/device-forecast: device(fridge/dishwasher), recent_wh(해당 가전 최신순 6개), hour, weekday, 선택적 minute·unit_price_krw_per_kwh
+- 기존 /api/simulate, /api/whole-house, /api/simulator/catalog는 HTTP 410으로 제거 안내를 반환합니다. 기타 이전 예측 엔드포인트는 현재 API에서 제공하지 않습니다.
 
-## 한국 날씨 API
-
-데모의 현재 날씨 버튼은 [Open-Meteo Forecast API](https://open-meteo.com/en/docs)를 사용합니다. API 키가 필요 없으며 `kma_seamless` 모델을 먼저 요청해 한국기상청(KMA) 모델을 사용합니다. 해당 모델의 최신 값이 없을 때에는 자동으로 `best_match` 모델을 사용합니다. 네트워크가 없거나 API가 응답하지 않아도 수동 슬라이더 예측은 계속 사용할 수 있습니다.
-
-과거 날씨 코드가 필요하면 주택의 실제 위치를 알고 있을 때만 `weather_enrichment.py`로 Open-Meteo Archive API 데이터를 받으세요. 원본 파일에 위치 정보가 없으므로, 한국 날씨를 원본 학습 데이터에 임의 결합하면 안 됩니다.
-
-## 해석 주의
-
-온습도만으로는 재실 인원, 조리, 세탁 같은 돌발 사용량을 완전히 알 수 없습니다. 따라서 이 결과는 가정의 평균적 사용 패턴을 보여주는 데모 예측이며, 예측 구간도 함께 확인해야 합니다.
-
-전기요금은 한전 주택용 저압·고압 누진 전력량요금을 바탕으로 한 다음 1시간의 **추가 예상요금**입니다. 기본요금, 할인, TV수신료, 청구 단위 반올림은 포함하지 않습니다. 실제 청구액은 [한전 전기요금 계산기](https://home.kepco.co.kr/kepco/front/html/CY/J/A/CYJAPP002.html)로 확인하세요.
+## 검사·평가 파일
+`python3 -m unittest test_appliance_plan test_laundry test_device_forecast -v`
+- `models/larco_cycle_metrics.json`
+- `models/device_forecast_metrics.json`

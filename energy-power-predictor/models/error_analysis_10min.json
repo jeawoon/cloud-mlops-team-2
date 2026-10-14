@@ -1,0 +1,386 @@
+{
+  "model_sha256": "639471dc69369d63eec5125fb3992fbee5f76c342043e46c6549183e8b5aaf66",
+  "test_rows": 3946,
+  "peak_threshold_wh": 210.0,
+  "detail": {
+    "groups": {
+      "전체": {
+        "count": 3946,
+        "mae_wh": 26.08,
+        "rmse_wh": 58.5,
+        "bias_wh": 1.42
+      },
+      "평상시": {
+        "count": 3622,
+        "mae_wh": 17.42,
+        "rmse_wh": 32.86,
+        "bias_wh": 9.31
+      },
+      "피크": {
+        "count": 324,
+        "mae_wh": 122.89,
+        "rmse_wh": 172.08,
+        "bias_wh": -86.75
+      },
+      "급상승": {
+        "count": 71,
+        "mae_wh": 299.81,
+        "rmse_wh": 319.05,
+        "bias_wh": -299.81
+      }
+    },
+    "peak_squared_error_share_pct": 71.0,
+    "by_hour": [
+      {
+        "hour": 0,
+        "count": 162,
+        "mae_wh": 7.12,
+        "rmse_wh": 8.92,
+        "bias_wh": -2.4
+      },
+      {
+        "hour": 1,
+        "count": 162,
+        "mae_wh": 7.04,
+        "rmse_wh": 8.72,
+        "bias_wh": -3.92
+      },
+      {
+        "hour": 2,
+        "count": 162,
+        "mae_wh": 8.09,
+        "rmse_wh": 9.7,
+        "bias_wh": -2.91
+      },
+      {
+        "hour": 3,
+        "count": 162,
+        "mae_wh": 7.34,
+        "rmse_wh": 9.27,
+        "bias_wh": -2.33
+      },
+      {
+        "hour": 4,
+        "count": 162,
+        "mae_wh": 5.93,
+        "rmse_wh": 7.49,
+        "bias_wh": -3.04
+      },
+      {
+        "hour": 5,
+        "count": 162,
+        "mae_wh": 16.18,
+        "rmse_wh": 35.89,
+        "bias_wh": -0.29
+      },
+      {
+        "hour": 6,
+        "count": 162,
+        "mae_wh": 20.48,
+        "rmse_wh": 40.8,
+        "bias_wh": 3.03
+      },
+      {
+        "hour": 7,
+        "count": 162,
+        "mae_wh": 34.82,
+        "rmse_wh": 79.77,
+        "bias_wh": -7.13
+      },
+      {
+        "hour": 8,
+        "count": 165,
+        "mae_wh": 49.24,
+        "rmse_wh": 85.53,
+        "bias_wh": 1.01
+      },
+      {
+        "hour": 9,
+        "count": 168,
+        "mae_wh": 46.7,
+        "rmse_wh": 95.62,
+        "bias_wh": -0.25
+      },
+      {
+        "hour": 10,
+        "count": 168,
+        "mae_wh": 37.13,
+        "rmse_wh": 73.89,
+        "bias_wh": 3.93
+      },
+      {
+        "hour": 11,
+        "count": 168,
+        "mae_wh": 34.98,
+        "rmse_wh": 81.14,
+        "bias_wh": -1.36
+      },
+      {
+        "hour": 12,
+        "count": 168,
+        "mae_wh": 28.59,
+        "rmse_wh": 58.97,
+        "bias_wh": 3.72
+      },
+      {
+        "hour": 13,
+        "count": 168,
+        "mae_wh": 32.38,
+        "rmse_wh": 62.42,
+        "bias_wh": 9.4
+      },
+      {
+        "hour": 14,
+        "count": 168,
+        "mae_wh": 24.79,
+        "rmse_wh": 58.49,
+        "bias_wh": 5.35
+      },
+      {
+        "hour": 15,
+        "count": 168,
+        "mae_wh": 18.67,
+        "rmse_wh": 36.3,
+        "bias_wh": 8.22
+      },
+      {
+        "hour": 16,
+        "count": 168,
+        "mae_wh": 39.0,
+        "rmse_wh": 78.11,
+        "bias_wh": -6.69
+      },
+      {
+        "hour": 17,
+        "count": 168,
+        "mae_wh": 62.01,
+        "rmse_wh": 107.47,
+        "bias_wh": -14.24
+      },
+      {
+        "hour": 18,
+        "count": 163,
+        "mae_wh": 65.12,
+        "rmse_wh": 96.02,
+        "bias_wh": 38.49
+      },
+      {
+        "hour": 19,
+        "count": 162,
+        "mae_wh": 18.82,
+        "rmse_wh": 30.7,
+        "bias_wh": 5.58
+      },
+      {
+        "hour": 20,
+        "count": 162,
+        "mae_wh": 21.21,
+        "rmse_wh": 40.54,
+        "bias_wh": -0.01
+      },
+      {
+        "hour": 21,
+        "count": 162,
+        "mae_wh": 15.58,
+        "rmse_wh": 31.05,
+        "bias_wh": 4.87
+      },
+      {
+        "hour": 22,
+        "count": 162,
+        "mae_wh": 10.34,
+        "rmse_wh": 12.74,
+        "bias_wh": -1.07
+      },
+      {
+        "hour": 23,
+        "count": 162,
+        "mae_wh": 10.39,
+        "rmse_wh": 19.7,
+        "bias_wh": -3.86
+      }
+    ],
+    "worst": [
+      {
+        "target_time": "2016-05-06 07:30:00",
+        "actual": 670.0,
+        "predicted": 80.01,
+        "previous_wh": 70,
+        "abs_error": 589.99,
+        "peak": true,
+        "jump": true
+      },
+      {
+        "target_time": "2016-05-27 09:40:00",
+        "actual": 580.0,
+        "predicted": 67.02,
+        "previous_wh": 50,
+        "abs_error": 512.98,
+        "peak": true,
+        "jump": true
+      },
+      {
+        "target_time": "2016-04-30 10:00:00",
+        "actual": 840.0,
+        "predicted": 347.26,
+        "previous_wh": 490,
+        "abs_error": 492.74,
+        "peak": true,
+        "jump": true
+      },
+      {
+        "target_time": "2016-05-16 17:40:00",
+        "actual": 630.0,
+        "predicted": 141.24,
+        "previous_wh": 110,
+        "abs_error": 488.76,
+        "peak": true,
+        "jump": true
+      },
+      {
+        "target_time": "2016-05-21 09:40:00",
+        "actual": 790.0,
+        "predicted": 306.61,
+        "previous_wh": 390,
+        "abs_error": 483.39,
+        "peak": true,
+        "jump": true
+      },
+      {
+        "target_time": "2016-04-30 12:20:00",
+        "actual": 570.0,
+        "predicted": 96.93,
+        "previous_wh": 80,
+        "abs_error": 473.07,
+        "peak": true,
+        "jump": true
+      },
+      {
+        "target_time": "2016-05-26 11:40:00",
+        "actual": 600.0,
+        "predicted": 128.23,
+        "previous_wh": 100,
+        "abs_error": 471.77,
+        "peak": true,
+        "jump": true
+      },
+      {
+        "target_time": "2016-05-13 11:10:00",
+        "actual": 600.0,
+        "predicted": 132.49,
+        "previous_wh": 110,
+        "abs_error": 467.51,
+        "peak": true,
+        "jump": true
+      },
+      {
+        "target_time": "2016-05-13 07:50:00",
+        "actual": 560.0,
+        "predicted": 97.13,
+        "previous_wh": 80,
+        "abs_error": 462.87,
+        "peak": true,
+        "jump": true
+      },
+      {
+        "target_time": "2016-05-07 18:10:00",
+        "actual": 560.0,
+        "predicted": 105.35,
+        "previous_wh": 80,
+        "abs_error": 454.65,
+        "peak": true,
+        "jump": true
+      },
+      {
+        "target_time": "2016-05-21 11:10:00",
+        "actual": 590.0,
+        "predicted": 135.71,
+        "previous_wh": 110,
+        "abs_error": 454.29,
+        "peak": true,
+        "jump": true
+      },
+      {
+        "target_time": "2016-05-26 09:50:00",
+        "actual": 820.0,
+        "predicted": 366.4,
+        "previous_wh": 460,
+        "abs_error": 453.6,
+        "peak": true,
+        "jump": true
+      },
+      {
+        "target_time": "2016-05-26 16:30:00",
+        "actual": 710.0,
+        "predicted": 258.04,
+        "previous_wh": 420,
+        "abs_error": 451.96,
+        "peak": true,
+        "jump": true
+      },
+      {
+        "target_time": "2016-05-13 14:20:00",
+        "actual": 620.0,
+        "predicted": 175.0,
+        "previous_wh": 170,
+        "abs_error": 445.0,
+        "peak": true,
+        "jump": true
+      },
+      {
+        "target_time": "2016-05-21 13:10:00",
+        "actual": 550.0,
+        "predicted": 140.69,
+        "previous_wh": 80,
+        "abs_error": 409.31,
+        "peak": true,
+        "jump": true
+      },
+      {
+        "target_time": "2016-05-13 17:50:00",
+        "actual": 560.0,
+        "predicted": 153.6,
+        "previous_wh": 110,
+        "abs_error": 406.4,
+        "peak": true,
+        "jump": true
+      },
+      {
+        "target_time": "2016-04-30 08:30:00",
+        "actual": 590.0,
+        "predicted": 210.53,
+        "previous_wh": 370,
+        "abs_error": 379.47,
+        "peak": true,
+        "jump": true
+      },
+      {
+        "target_time": "2016-05-14 17:40:00",
+        "actual": 490.0,
+        "predicted": 125.6,
+        "previous_wh": 100,
+        "abs_error": 364.4,
+        "peak": true,
+        "jump": true
+      },
+      {
+        "target_time": "2016-05-26 09:40:00",
+        "actual": 460.0,
+        "predicted": 98.57,
+        "previous_wh": 80,
+        "abs_error": 361.43,
+        "peak": true,
+        "jump": true
+      },
+      {
+        "target_time": "2016-05-23 17:30:00",
+        "actual": 590.0,
+        "predicted": 234.35,
+        "previous_wh": 240,
+        "abs_error": 355.65,
+        "peak": true,
+        "jump": true
+      }
+    ]
+  }
+}
