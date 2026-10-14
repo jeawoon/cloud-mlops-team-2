@@ -27,7 +27,7 @@ def training_features(series):
 def predict_device(bundle,payload):
     if not isinstance(payload,dict):raise ValueError('JSON object required')
     device=payload.get('device')
-    if device not in DEVICES:raise ValueError('냉장·냉동고 또는 식기세척기를 선택하세요')
+    if not isinstance(device,str) or device not in DEVICES:raise ValueError('냉장·냉동고 또는 식기세척기를 선택하세요')
     recent=payload.get('recent_wh')
     if not isinstance(recent,list) or len(recent)!=6:raise ValueError('해당 가전의 최근 완료된 구간 6개가 필요합니다')
     recent=[numeric(v,'recent_wh',0,4000/6) for v in recent]

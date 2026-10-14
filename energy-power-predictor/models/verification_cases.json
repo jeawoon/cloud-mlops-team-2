@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "model_sha256": {
+    "larco_cycle_model.joblib": "4f246d8db216dce0fec19a30426d58afb18b134baf36afd85ee9a7a74d575478",
+    "device_forecast_model.joblib": "cefad65bf466b0f9bb0aa4a2e5644ac8000df0df4433d86833f20ebd3ca20f6a"
+  },
+  "full_refit_recheck": {
+    "fridge": {
+      "test_rows": 14933,
+      "r2": 0.789664106666061,
+      "mae_wh": 1.7324068422663845
+    },
+    "dishwasher": {
+      "test_rows": 14933,
+      "r2": 0.9303351627362653,
+      "mae_wh": 2.403510578190099
+    }
+  },
+  "cases": [
+    {
+      "id": "formula-tv",
+      "label": "TV 100W · 60분 · 2대: 산식 확인",
+      "kind": "formula",
+      "scope": "60분 사용 계획",
+      "source": "산술 검증, 실측 데이터 아님",
+      "selection_rule": "고정된 독립 산식: 100 × 60/60 × 2 = 200Wh",
+      "actual_wh": 200,
+      "reference_prediction_wh": 200,
+      "payload": {
+        "unit_price_krw_per_kwh": 200,
+        "plans": [
+          {
+            "device": "Appliance4",
+            "method": "power_time",
+            "quantity": 2,
+            "settings": {
+              "power_w": 100,
+              "duration_minutes": 60,
+              "duty_cycle_pct": 100,
+              "standby_w": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "laundry-1",
+      "label": "세탁코스 실측 예제 1",
+      "kind": "measured",
+      "scope": "세탁코스 1회 전체",
+      "source": "https://zenodo.org/records/18657997",
+      "license": "CC-BY-4.0",
+      "source_record": "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_cold_cold_0_2.csv",
+      "selection_rule": "테스트 ID 순서상 제품별 첫 API 지원 예제, 고장 제품 제외",
+      "actual_wh": 125.198,
+      "reference_prediction_wh": 100.28651007853546,
+      "payload": {
+        "unit_price_krw_per_kwh": 200,
+        "plans": [
+          {
+            "device": "Appliance2",
+            "method": "laundry_cycle",
+            "settings": {
+              "machine": "KUBO-1_KBWM8321",
+              "program": "cold",
+              "heat": "0",
+              "load_kg": 2,
+              "ambient_temp": 16
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "laundry-2",
+      "label": "세탁코스 실측 예제 2",
+      "kind": "measured",
+      "scope": "세탁코스 1회 전체",
+      "source": "https://zenodo.org/records/18657997",
+      "license": "CC-BY-4.0",
+      "source_record": "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_hot_cotton_40_0.csv",
+      "selection_rule": "테스트 ID 순서상 제품별 첫 API 지원 예제, 고장 제품 제외",
+      "actual_wh": 488.739,
+      "reference_prediction_wh": 544.9155936404435,
+      "payload": {
+        "unit_price_krw_per_kwh": 200,
+        "plans": [
+          {
+            "device": "Appliance2",
+            "method": "laundry_cycle",
+            "settings": {
+              "machine": "KUNFT_KWM5317",
+              "program": "cotton",
+              "heat": "40",
+              "load_kg": 0,
+              "ambient_temp": 32
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "fridge-first",
+      "label": "냉장·냉동고 · 테스트 첫 구간",
+      "kind": "measured",
+      "scope": "다음 10분",
+      "source": "https://zenodo.org/records/5063428",
+      "license": "CC-BY-4.0",
+      "house": "House2",
+      "forecast_at": "2015-01-24 20:40:00",
+      "target_end": "2015-01-24 20:50:00",
+      "selection_rule": "테스트 첫 유효 구간",
+      "actual_wh": 14.917602996254681,
+      "reference_prediction_wh": 14.53820536784446,
+      "payload": {
+        "unit_price_krw_per_kwh": 200,
+        "plans": [
+          {
+            "device": "Appliance1",
+            "method": "recent_forecast",
+            "settings": {
+              "recent_wh": [
+                3.7546816479400746,
+                0.16666666666666666,
+                0.16666666666666666,
+                1.0757575757575757,
+                13.653256704980842,
+                14.017045454545455
+              ],
+              "hour": 20,
+              "minute": 40,
+              "weekday": 5
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "fridge-low",
+      "label": "냉장·냉동고 · 낮은 사용량 구간",
+      "kind": "measured",
+      "scope": "다음 10분",
+      "source": "https://zenodo.org/records/5063428",
+      "license": "CC-BY-4.0",
+      "house": "House2",
+      "forecast_at": "2015-01-24 21:20:00",
+      "target_end": "2015-01-24 21:30:00",
+      "selection_rule": "정답 1Wh 미만인 첫 테스트 구간(오차 기준 선택 아님)",
+      "actual_wh": 0.16666666666666666,
+      "reference_prediction_wh": 0.2836325052259013,
+      "payload": {
+        "unit_price_krw_per_kwh": 200,
+        "plans": [
+          {
+            "device": "Appliance1",
+            "method": "recent_forecast",
+            "settings": {
+              "recent_wh": [
+                5.053030303030303,
+                13.795880149812733,
+                14.215909090909092,
+                14.917602996254681,
+                3.7546816479400746,
+                0.16666666666666666
+              ],
+              "hour": 21,
+              "minute": 20,
+              "weekday": 5
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "dishwasher-first",
+      "label": "식기세척기 · 테스트 첫 구간",
+      "kind": "measured",
+      "scope": "다음 10분",
+      "source": "https://zenodo.org/records/5063428",
+      "license": "CC-BY-4.0",
+      "house": "House2",
+      "forecast_at": "2015-01-24 20:40:00",
+      "target_end": "2015-01-24 20:50:00",
+      "selection_rule": "테스트 첫 유효 구간",
+      "actual_wh": 166.50374531835206,
+      "reference_prediction_wh": 106.48130064075902,
+      "payload": {
+        "unit_price_krw_per_kwh": 200,
+        "plans": [
+          {
+            "device": "Appliance3",
+            "method": "recent_forecast",
+            "settings": {
+              "recent_wh": [
+                317.9438202247191,
+                11.683908045977011,
+                11.878787878787877,
+                64.84848484848484,
+                370.7950191570881,
+                130.58901515151516
+              ],
+              "hour": 20,
+              "minute": 40,
+              "weekday": 5
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "dishwasher-low",
+      "label": "식기세척기 · 낮은 사용량 구간",
+      "kind": "measured",
+      "scope": "다음 10분",
+      "source": "https://zenodo.org/records/5063428",
+      "license": "CC-BY-4.0",
+      "house": "House2",
+      "forecast_at": "2015-01-24 21:30:00",
+      "target_end": "2015-01-24 21:40:00",
+      "selection_rule": "정답 1Wh 미만인 첫 테스트 구간(오차 기준 선택 아님)",
+      "actual_wh": 0.2178030303030303,
+      "reference_prediction_wh": 3.238435588895201,
+      "payload": {
+        "unit_price_krw_per_kwh": 200,
+        "plans": [
+          {
+            "device": "Appliance3",
+            "method": "recent_forecast",
+            "settings": {
+              "recent_wh": [
+                208.33333333333334,
+                335.6969696969697,
+                9.49438202247191,
+                11.642045454545455,
+                166.50374531835206,
+                317.9438202247191
+              ],
+              "hour": 21,
+              "minute": 30,
+              "weekday": 5
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "note": "기존 테스트 기간의 재현 확인입니다. 예제만으로 전체 R²를 계산하지 않으며 새로운 독립 테스트가 아닙니다."
+}

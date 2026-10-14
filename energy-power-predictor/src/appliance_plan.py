@@ -12,7 +12,7 @@ def calculate_plan(data,catalog,get_bundle):
     for plan in plans:
         if not isinstance(plan,dict):raise ValueError('가전 계획을 확인하세요')
         key=plan.get('device')
-        if key not in catalog['profiles'] or key in seen:raise ValueError('알 수 없거나 중복된 가전입니다')
+        if not isinstance(key,str) or key not in catalog['profiles'] or key in seen:raise ValueError('알 수 없거나 중복된 가전입니다')
         seen.add(key)
         qty=numeric(plan.get('quantity',1),'quantity',1,50)
         if int(qty)!=qty:raise ValueError('대수는 정수여야 합니다')

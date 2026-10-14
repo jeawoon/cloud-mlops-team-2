@@ -1,5 +1,13 @@
 # 가전별 예상 사용량·요금
 
+## 서비스 한 문장
+
+REFIT·LARCO 공개 가전 실측 데이터를 바탕으로, 사용자가 가전 종류·사용 계획 또는 최근 측정값을 입력하면 선택 가전의 예상 사용량과 고정 단가 기준 추가요금을 보여주는 서비스입니다.
+
+초기 온습도·집 전체 예측 주제에서 사용자가 요청한 가전별 시뮬레이터로 방향을 변경했습니다. 따라서 초기 설명과 기능이 같지는 않습니다. 수업에서 초기 주제 유지가 필수라면 교수님과 별도 확인이 필요합니다.
+
+2026-10-14 점검·검증 화면·사람의 확인 절차는 [단계별 검증 기록](VERIFICATION.md)을 참고하세요.
+
 이전 버전과 달라진 입력·화면·학습 모델·R²·요금 계산·API·AWS 배포 결과는 [상세 변경 기록](CHANGELOG.md)에서 확인하세요. 현재 기능 버전은 `6473f05`이며, 이후 변경 이력 문서 추가는 재학습이나 성능 개선을 의미하지 않습니다.
 
 기존 집 전체 모델·화면·API는 제거했습니다. 원본 데이터는 보존하고 제거 모델과 이전 코드는 `work/removed-wholehouse-cGCHNA/`에 복구 가능하게 보관합니다. 이 폴더는 Git 제외입니다. 기존 UCI 가전 모델도 오프라인 연구 자료로 보존하지만 현재 앱/API에서는 사용하지 않습니다.
@@ -26,6 +34,8 @@
 [REFIT 공식 데이터](https://zenodo.org/records/5063428), CC BY 4.0: House2의 Appliance1(냉장·냉동고), Appliance3(식기세척기). MD5 검증 후 센서 문제 행·범위 초과·10분 내 유효 60개 미만 측정은 제외합니다. 완료 시각으로 10분 구간을 라벨링합니다. 가전별 앞 60% 학습, 다음 20% 검증, 뒤 20% 테스트로 나누고 미래 목표가 경계를 넘는 행을 제외합니다. 검증 R²로 모델 선택 후 학습+검증 재학습합니다. 테스트는 이전에도 본 기간이므로 독립적인 새 미래 데이터 확인이 필요합니다.
 
 ## 실행
+Python 3.12 환경을 권장합니다. 저장 모델과 호환되는 직접 의존성 버전을 고정했습니다. 최초 실행 전 `python3 -m pip install -r requirements.txt`로 설치하세요. 로컬 테스트는 Python 3.9.6에서도 수행했습니다.
+
 같은 폴더에서 첫 터미널:
 ```bash
 python3 api.py --port 8000
@@ -36,6 +46,8 @@ python3 -m streamlit run app.py
 ```
 웹 주소: http://127.0.0.1:8501
 다른 API 주소는 `PREDICTION_API_URL`로 설정합니다.
+
+화면 하단의 **검증용 예제: 실측 정답과 예측 비교**를 펼쳐 예제를 선택하고 실행할 수 있습니다. 산식 예제 1개, 세탁 실측 2개, 냉장고·식기세척기 실측 각 2개를 제공합니다. 실제값·예측값·절대오차·동일 단가 요금 환산과 입력 JSON을 확인하세요. 직접 확인 체크는 현재 브라우저의 확인 상태이며 팀원 PR 리뷰 승인은 아닙니다.
 
 ## 재학습
 ```bash
@@ -51,10 +63,19 @@ REFIT House2 원본은 `data/refit/CLEAN_House2.csv`가 필요합니다. 다운�
 - GET /api/laundry-cycle/catalog
 - POST /api/laundry-cycle: machine, program, heat, load_kg, ambient_temp, 선택적 unit_price_krw_per_kwh
 - GET /api/device-forecast/catalog
+- GET /api/verification-cases: 검증 예제 목록
+- POST /api/verification: case_id 입력. 서버의 고정 예제 입력만 실제 예측 API에 전달하며 정답은 모델 입력에서 제외합니다. 실측 비교 및 저장 출력 재현 여부를 반환합니다.
 - POST /api/device-forecast: device(fridge/dishwasher), recent_wh(해당 가전 최신순 6개), hour, weekday, 선택적 minute·unit_price_krw_per_kwh
 - 기존 /api/simulate, /api/whole-house, /api/simulator/catalog는 HTTP 410으로 제거 안내를 반환합니다. 기타 이전 예측 엔드포인트는 현재 API에서 제공하지 않습니다.
 
 ## 검사·평가 파일
-`python3 -m unittest test_appliance_plan test_laundry test_device_forecast -v`
+`python3 -m unittest test_appliance_plan test_laundry test_device_forecast test_verification test_api test_verification_ui -v`
 - `models/larco_cycle_metrics.json`
 - `models/device_forecast_metrics.json`
+- `models/verification_cases.json`: 기존 테스트 구간의 고정 예제와 모델 체크섬. 새 독립 평가 데이터가 아닙니다.
+
+원본을 보유한 경우 검증 예제 JSON을 재현하는 명령입니다. 표준출력 JSON을 확인한 뒤 모델 버전과 함께 갱신하세요. 예제 생성은 모델을 재학습하지 않습니다.
+
+```bash
+python3 build_verification_cases.py --larco-csv /path/to/aggregated_data.csv --refit-csv /path/to/CLEAN_House2.csv
+```

@@ -13,6 +13,7 @@ def render_plan(request_prediction):
     catalog=json.loads((ROOT/'models/appliance_power_catalog.json').read_text())
     profiles=catalog['profiles']
     st.title('가전 선택·예상 전력량·전기료')
+    st.caption('공개 가전 실측 데이터를 바탕으로, 선택한 가전의 사용 계획 또는 최근 측정값을 입력받아 예상 사용량과 고정 단가 기준 추가요금을 보여주는 서비스입니다.')
     st.caption('가전을 여러 개 선택하고 사용 계획을 입력하세요. 집 전체 예측 모델 없이 선택한 가전만 계산합니다.')
     selected=st.multiselect('사용할 가전 선택 — 여러 개 선택 가능',list(profiles),default=['Appliance2'],format_func=lambda k:profiles[k]['label'],key='plan_devices')
     rate=st.number_input('적용 단가 (원/kWh)',min_value=0.0,max_value=10000.0,value=200.0,step=10.0,key='plan_rate')
