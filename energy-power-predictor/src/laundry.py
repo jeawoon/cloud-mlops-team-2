@@ -7,7 +7,7 @@ from train_larco import features
 def predict_laundry(bundle,payload):
     if not isinstance(payload,dict):raise ValueError('JSON object required')
     machine=payload.get('machine')
-    if machine not in bundle['catalog']:raise ValueError('학습된 제품 모델을 선택하세요')
+    if not isinstance(machine,str) or machine not in bundle['catalog']:raise ValueError('학습된 제품 모델을 선택하세요')
     catalog=bundle['catalog'][machine]
     program,heat=payload.get('program'),payload.get('heat')
     option=next((o for o in catalog['options'] if o['program']==program and o['heat']==heat),None)

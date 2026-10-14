@@ -5,6 +5,7 @@ from urllib.error import HTTPError
 from urllib.request import Request,urlopen
 import streamlit as st
 from src.appliance_plan_ui import render_plan
+from src.verification_ui import render_verification
 
 def request_prediction(endpoint,payload):
     url=os.environ.get('PREDICTION_API_URL','http://127.0.0.1:8000')+endpoint
@@ -23,3 +24,4 @@ def request_prediction(endpoint,payload):
 
 st.set_page_config(page_title='가전별 예상 사용량·요금',page_icon='⚡',layout='centered')
 render_plan(request_prediction)
+render_verification(request_prediction)

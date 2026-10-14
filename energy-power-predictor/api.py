@@ -19,6 +19,9 @@ def power_catalog():
 
 def predict(path,data):
     if not isinstance(data,dict):raise ValueError('JSON object required')
+    if path=='/api/verification':
+        from src.verification import run_case
+        return run_case(data,predict)
     if path=='/api/appliance-plan':
         from src.appliance_plan import calculate_plan
         return calculate_plan(data,power_catalog(),bundle)
@@ -48,9 +51,16 @@ class Handler(BaseHTTPRequestHandler):
             self.respond(410,{'error':'집 전체 예측 모델은 제거되었습니다.'})
         elif self.path=='/api/docs':
             self.respond(200,{'method':'POST','endpoints':{
+                '/api/verification':{'required':['case_id'],'scope':'Fixed formula or measured holdout example; labels are not sent to the predictor. Reproduction is not accuracy.'},
                 '/api/appliance-plan':{'required':['plans (device Appliance1..9, method, quantity, settings)'],'optional':['unit_price_krw_per_kwh'],'methods':['power_time: power_w, duration_minutes, duty_cycle_pct, standby_w','laundry_cycle: same fields as laundry-cycle endpoint; Appliance2 only','recent_forecast: same fields as device-forecast; Appliance1 or Appliance3 only'],'scope':'Sum selected appliance plans; NOT whole-house or a single common 10-minute horizon. plan_r2 remains null.'},
                 '/api/laundry-cycle':{'required':['machine','program','heat (string)','load_kg','ambient_temp'],'optional':['unit_price_krw_per_kwh'],'scope':'complete measured washing cycle'},
                 '/api/device-forecast':{'required':['device (fridge or dishwasher)','recent_wh (6 appliance-only completed bins, newest first)','hour','weekday'],'optional':['minute','unit_price_krw_per_kwh'],'scope':'next 10-minute energy of one appliance; not a user-plan complete-cycle simulation'}}})
+        elif self.path=='/api/verification-cases':
+            try:
+                from src.verification import load_cases
+                f=load_cases()
+                self.respond(200,{'cases':[{k:c[k] for k in ('id','label','kind','scope')} for c in f['cases']], 'note':f['note']})
+            except Exception:self.respond(503,{'error':'verification cases unavailable'})
         elif self.path=='/api/health':
             try:
                 bundle('larco_cycle_model.joblib')
@@ -74,7 +84,7 @@ class Handler(BaseHTTPRequestHandler):
         if self.path in RETIRED:
             self.respond(410,{'error':'집 전체 예측 모델은 제거되었습니다.'})
             return
-        if self.path not in ('/api/laundry-cycle','/api/device-forecast','/api/appliance-plan'):
+        if self.path not in ('/api/laundry-cycle','/api/device-forecast','/api/appliance-plan','/api/verification'):
             self.respond(404,{'error':'not found'})
             return
         try:
