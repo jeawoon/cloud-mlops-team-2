@@ -6,14 +6,17 @@ from urllib.request import Request,urlopen
 import streamlit as st
 from src.appliance_plan_ui import render_plan
 from src.verification_ui import render_verification
+from src.history_ui import render_history,save_controls
 
 def request_prediction(endpoint,payload):
     url=os.environ.get('PREDICTION_API_URL','http://127.0.0.1:8000')+endpoint
-    request=Request(url,data=json.dumps(payload).encode(),headers={'Content-Type':'application/json'},method='POST')
+    headers={'Content-Type':'application/json'}
+    if os.environ.get('PREDICTION_API_TOKEN'):headers['Authorization']='Bearer '+os.environ['PREDICTION_API_TOKEN']
+    request=Request(url,data=json.dumps(payload).encode(),headers=headers,method='POST')
     try:
         with urlopen(request,timeout=20) as response:return json.load(response)
     except HTTPError as error:
-        if error.code==422:
+        if error.code in (401,422,429):
             try:st.error(json.load(error)['error'])
             except (ValueError,KeyError):st.error('입력값을 확인하세요.')
         else:st.error('예측 서버의 모델을 사용할 수 없습니다.')
@@ -23,5 +26,9 @@ def request_prediction(endpoint,payload):
         st.stop()
 
 st.set_page_config(page_title='가전별 예상 사용량·요금',page_icon='⚡',layout='centered')
-render_plan(request_prediction)
-render_verification(request_prediction)
+page=st.radio('화면 선택',['간편 계산','AI 예측','내 기록'],horizontal=True,key='workspace_mode')
+if page=='내 기록':render_history(request_prediction)
+else:
+    output=render_plan(request_prediction,'simple' if page=='간편 계산' else 'ai')
+    if output is not None:save_controls(request_prediction,output[0])
+    render_verification(request_prediction)

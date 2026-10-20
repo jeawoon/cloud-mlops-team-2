@@ -1,0 +1,144 @@
+{
+  "models_sha256": {
+    "device_forecast_model.joblib": "cefad65bf466b0f9bb0aa4a2e5644ac8000df0df4433d86833f20ebd3ca20f6a",
+    "device_extended_model.joblib": "0692115f79780d926fbfe85fc0f4f0777fb44ea594662f665a65357be9fc6be6",
+    "larco_cycle_model.joblib": "4f246d8db216dce0fec19a30426d58afb18b134baf36afd85ee9a7a74d575478"
+  },
+  "calibrations": {
+    "fridge": {
+      "radius_wh": 4.189768282669062,
+      "nominal_coverage": 0.9,
+      "calibration_rows": 7466,
+      "evaluation_rows": 7467,
+      "observed_coverage": 0.8913887772867283,
+      "note": "기존 테스트 전반부 잔차로 보정하고 후반부에서 포함률 확인. 시계열 의존·분포 변화가 있어 90% 포함을 보장하지 않습니다. 새 독립 테스트가 아닙니다."
+    },
+    "fridge_extended": {
+      "radius_wh": 4.583078045102319,
+      "nominal_coverage": 0.9,
+      "calibration_rows": 6190,
+      "evaluation_rows": 6190,
+      "observed_coverage": 0.8969305331179321,
+      "note": "기존 테스트 전반부 잔차로 보정하고 후반부에서 포함률 확인. 시계열 의존·분포 변화가 있어 90% 포함을 보장하지 않습니다. 새 독립 테스트가 아닙니다."
+    },
+    "dishwasher": {
+      "radius_wh": 2.193424590805701,
+      "nominal_coverage": 0.9,
+      "calibration_rows": 7466,
+      "evaluation_rows": 7467,
+      "observed_coverage": 0.9145573858309897,
+      "note": "기존 테스트 전반부 잔차로 보정하고 후반부에서 포함률 확인. 시계열 의존·분포 변화가 있어 90% 포함을 보장하지 않습니다. 새 독립 테스트가 아닙니다."
+    },
+    "dishwasher_extended": {
+      "radius_wh": 2.304918191461372,
+      "nominal_coverage": 0.9,
+      "calibration_rows": 6190,
+      "evaluation_rows": 6190,
+      "observed_coverage": 0.8987075928917609,
+      "note": "기존 테스트 전반부 잔차로 보정하고 후반부에서 포함률 확인. 시계열 의존·분포 변화가 있어 90% 포함을 보장하지 않습니다. 새 독립 테스트가 아닙니다."
+    },
+    "laundry": {
+      "radius_wh": 264.9497236445184,
+      "nominal_coverage": 0.9,
+      "calibration_rows": 64,
+      "evaluation_rows": 67,
+      "observed_coverage": 0.9552238805970149,
+      "note": "기존 테스트 전반부 잔차로 보정하고 후반부에서 포함률 확인. 시계열 의존·분포 변화가 있어 90% 포함을 보장하지 않습니다. 새 독립 테스트가 아닙니다."
+    }
+  },
+  "experiments": {
+    "fridge": {
+      "selected_on_validation": "24h_hist_15",
+      "validation": {
+        "six_bin_baseline": {
+          "r2": 0.7587550499294944,
+          "mae_wh": 1.8766815895303595,
+          "rmse_wh": 3.2186075565824015
+        },
+        "24h_hist_15": {
+          "r2": 0.7752587100710214,
+          "mae_wh": 1.7629732311692996,
+          "rmse_wh": 3.1065642893572467
+        },
+        "24h_hist_31": {
+          "r2": 0.7706322350971861,
+          "mae_wh": 1.7467227740104618,
+          "rmse_wh": 3.1383769274265725
+        }
+      },
+      "test": {
+        "six_bin_baseline": {
+          "r2": 0.7837922662950307,
+          "mae_wh": 1.741491695158875,
+          "rmse_wh": 3.0508070089558985
+        },
+        "24h_hist_15": {
+          "r2": 0.8118797308020638,
+          "mae_wh": 1.604174518864227,
+          "rmse_wh": 2.8457511431783846
+        },
+        "24h_hist_31": {
+          "r2": 0.8144960933096873,
+          "mae_wh": 1.5598513096333857,
+          "rmse_wh": 2.825892607589688
+        }
+      },
+      "deployed_model_same_test": {
+        "r2": 0.7866652295019705,
+        "mae_wh": 1.7376634700899787,
+        "rmse_wh": 3.030469697215942
+      },
+      "train_rows": 10647,
+      "validation_rows": 10771,
+      "test_rows": 12380,
+      "note": "두 피처 방식은 동일 샘플·동일 시각 경계에서 비교. 선택은 검증 R²만 사용. 기본 배포 모델은 변경하지 않음. 24시간 옵션도 House2 실험으로 다른 집 일반화는 미검증."
+    },
+    "dishwasher": {
+      "selected_on_validation": "24h_hist_31",
+      "validation": {
+        "six_bin_baseline": {
+          "r2": 0.944985504127708,
+          "mae_wh": 2.4505449878521266,
+          "rmse_wh": 11.776480873029323
+        },
+        "24h_hist_15": {
+          "r2": 0.9623079330624295,
+          "mae_wh": 1.7155675458843314,
+          "rmse_wh": 9.74769516152302
+        },
+        "24h_hist_31": {
+          "r2": 0.9629039165846996,
+          "mae_wh": 1.6869162254963734,
+          "rmse_wh": 9.670323260381753
+        }
+      },
+      "test": {
+        "six_bin_baseline": {
+          "r2": 0.9114829861965171,
+          "mae_wh": 2.7914587430026967,
+          "rmse_wh": 15.38960847210601
+        },
+        "24h_hist_15": {
+          "r2": 0.8579371350449468,
+          "mae_wh": 2.8817565747053555,
+          "rmse_wh": 19.496402326252923
+        },
+        "24h_hist_31": {
+          "r2": 0.8591909179499795,
+          "mae_wh": 2.9223301866356355,
+          "rmse_wh": 19.41017842540591
+        }
+      },
+      "deployed_model_same_test": {
+        "r2": 0.923066551497411,
+        "mae_wh": 2.5656503199055956,
+        "rmse_wh": 14.347353335562465
+      },
+      "train_rows": 10647,
+      "validation_rows": 10771,
+      "test_rows": 12380,
+      "note": "두 피처 방식은 동일 샘플·동일 시각 경계에서 비교. 선택은 검증 R²만 사용. 기본 배포 모델은 변경하지 않음. 24시간 옵션도 House2 실험으로 다른 집 일반화는 미검증."
+    }
+  },
+  "scope": "retrospective existing test splits only; no unseen homes or new independent future labels"
+}
