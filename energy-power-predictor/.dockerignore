@@ -1,0 +1,17 @@
+.git
+.venv
+.venv_run
+data
+work
+reports
+runtime-data
+__pycache__
+*.pyc
+*.pem
+*.key
+.env*
+deploy/*.env
+.streamlit/secrets.toml
+*.sqlite*
+*.db
+*history-access-key*

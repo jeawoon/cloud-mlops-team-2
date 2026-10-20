@@ -1,0 +1,43 @@
+services:
+  app:
+    image: ${ENERGY_IMAGE:?Set a versioned image tag, never rely on latest}
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    environment:
+      PREDICTION_API_TOKEN: ${PREDICTION_API_TOKEN:?Set a random service token}
+      ENERGY_HISTORY_DB: /app/runtime-data/history.sqlite3
+    volumes:
+      - history:/app/runtime-data
+    restart: unless-stopped
+    mem_limit: 1g
+    cpus: 1.5
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: '3'
+  proxy:
+    image: caddy:2
+    environment:
+      ENERGY_DOMAIN: ${ENERGY_DOMAIN:?Set an owned domain with DNS pointing to this server}
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    restart: unless-stopped
+    depends_on:
+      app:
+        condition: service_healthy
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: '3'
+volumes:
+  history:
+  caddy_data:
+  caddy_config:

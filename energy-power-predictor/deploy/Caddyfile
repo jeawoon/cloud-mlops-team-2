@@ -1,0 +1,15 @@
+{$ENERGY_DOMAIN} {
+    encode gzip
+    header {
+        X-Content-Type-Options nosniff
+        Referrer-Policy same-origin
+        X-Frame-Options SAMEORIGIN
+    }
+    # API is internal only. Browser uses Streamlit, which calls its local API.
+    handle /api/* {
+        respond "External API access disabled" 404
+    }
+    handle {
+        reverse_proxy app:8501
+    }
+}

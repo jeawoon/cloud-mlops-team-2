@@ -20,6 +20,7 @@ def calculate_plan(data,catalog,get_bundle):
         start=numeric(plan.get('start_after_minutes',0),'start_after_minutes',0,1440)
         method=plan.get('method','power_time')
         settings=plan.get('settings',{})
+        bounds=None
         if not isinstance(settings,dict):raise ValueError('설정은 객체여야 합니다')
         if method=='power_time':
             power=numeric(settings.get('power_w'),'power_w',0,20000)
@@ -35,20 +36,34 @@ def calculate_plan(data,catalog,get_bundle):
             wh=result['energy_wh'];duration=result['estimated_duration_minutes']
             scope='세탁코스 1회 완료'
             metrics=result['measured_cycle_test_metrics'];note=result['note']
+            bounds=result.get('energy_interval_wh')
         elif method=='recent_forecast' and key in ('Appliance1','Appliance3'):
             device='fridge' if key=='Appliance1' else 'dishwasher'
             result=predict_device(get_bundle('device_forecast_model.joblib'),dict(settings,device=device,unit_price_krw_per_kwh=rate))
             wh=result['energy_wh'];duration=10
             scope='현재부터 다음 10분'
             metrics=result['metrics'];note=result['note']
+            bounds=result.get('energy_interval_wh')
             if start!=0:raise ValueError('최근 기록 모델은 현재부터 다음 10분만 지원합니다. 미래 시작 계획은 시간·소비전력 계산을 선택하세요')
         else:raise ValueError('이 가전에서 지원하지 않는 계산 방식입니다')
         energy=wh*qty
+        if bounds:
+            bounds=dict(bounds,lower_wh=bounds['lower_wh']*qty,upper_wh=bounds['upper_wh']*qty)
         rows.append({'device':key,'label':catalog['profiles'][key]['label'],'quantity':qty,'method':method,
                      'start_after_minutes':start,'duration_minutes':duration,'scope':scope,
                      'energy_wh':energy,'energy_kwh':energy/1000,'cost_krw':energy/1000*rate,
-                     'metrics':metrics,'note':note})
+                     'metrics':metrics,'note':note,'energy_interval_wh':bounds})
     total=sum(r['energy_wh'] for r in rows)
-    return {'items':rows,'selected_appliances_wh':total,'selected_appliances_kwh':total/1000,
+    result={'items':rows,'selected_appliances_wh':total,'selected_appliances_kwh':total/1000,
             'selected_appliances_cost_krw':total/1000*rate,'unit_price_krw_per_kwh':rate,'plan_r2':None,
             'note':'선택한 가전의 각 사용 계획 합계입니다. 집 전체 소비전력 또는 같은 10분 구간의 합계가 아닙니다. 시작 지연은 고정 단가 계산의 비용에 영향을 주지 않습니다.'}
+    if 'billing' in data:
+        from src.billing import reference_increment
+        options=data['billing']
+        if not isinstance(options,dict):raise ValueError('요금 설정을 확인하세요')
+        if options.get('acknowledge_reference') is not True:raise ValueError('참고 요금표의 적용 범위를 확인하고 동의하세요')
+        bill=reference_increment(options.get('current_kwh'),total/1000,options)
+        result['billing']=bill
+        result['selected_appliances_cost_krw']=bill['additional_cost_krw']
+        result['note']+=' 개별 가전 표의 요금은 고정 단가 환산이며 누진 요금 합계와 다릅니다.'
+    return result

@@ -18,7 +18,9 @@ def predict_laundry(bundle,payload):
     row=features(pd.DataFrame([dict(machine=machine,program_name=program,program_heat=heat,target_load=load,ambient_temp=ambient)]))
     wh=max(0,float(bundle['models']['energy'].predict(row)[0]))
     minutes=max(0,float(bundle['models']['duration'].predict(row)[0]))
+    from src.uncertainty import interval
     return {'scope':'complete washing cycle only','energy_wh':wh,'energy_kwh':wh/1000,'cost_krw':wh/1000*price,
+            'energy_interval_wh':interval('laundry',wh),
             'estimated_duration_minutes':minutes,'measured_cycle_test_metrics':bundle['metrics']['reports']['energy']['test'],
             'test_cycles':bundle['metrics']['test_cycles'],'whole_house_scenario_r2':None,
             'note':'LARCO 실험실 세탁코스 1회 전체 사용량입니다. 다음 10분 또는 집 전체 시뮬레이션 정확도가 아닙니다. 다른 제품·실제 가정에서는 추가 검증이 필요합니다.'}

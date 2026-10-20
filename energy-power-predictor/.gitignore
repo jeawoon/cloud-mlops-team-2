@@ -13,3 +13,10 @@ __pycache__/
 models/sample_*/
 models/plegma_*/
 data/
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+*.db
+runtime-data/
+deploy/*.env
+*history-access-key*

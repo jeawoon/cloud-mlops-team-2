@@ -39,8 +39,35 @@ def predict_device(bundle,payload):
     h=hour+minute/60
     values=recent+[recent[0]-recent[1],float(np.mean(recent)),float(np.std(recent)),float(np.sin(2*np.pi*h/24)),float(np.cos(2*np.pi*h/24)),int(weekday>=5)]
     row=pd.DataFrame([values],columns=COLUMNS)
-    wh=max(0,float(bundle['models'][device].predict(row)[0]))
+    variant=payload.get('model_variant','standard')
+    if variant not in ('standard','extended'):raise ValueError('지원 모델 버전을 선택하세요')
+    metrics=bundle['metrics'][device]['test']
+    if variant=='extended':
+        if device!='fridge':raise ValueError('식기세척기 24시간 후보는 평가 성능 저하로 사용하지 않습니다. 기본 모델을 선택하세요.')
+        from src.extended_history import inference_row
+        history=payload.get('history_wh')
+        if not isinstance(history,list) or len(history)!=144:raise ValueError('24시간 모델은 완료된 10분 기록 144개가 필요합니다')
+        history=[numeric(v,'history_wh',0,4000/6) for v in history]
+        if not np.allclose(history[-6:][::-1],recent,atol=1e-9,rtol=0):raise ValueError('최근 6개와 24시간 기록이 일치하지 않습니다')
+        ext=load_extended()
+        selected=ext['models'][device]
+        row=inference_row(history,hour,minute,weekday)[selected['columns']]
+        wh=max(0,float(selected['model'].predict(row)[0]))
+        report=ext['metrics'][device]
+        metrics=report['test'][report['selected_on_validation']]
+    else:wh=max(0,float(bundle['models'][device].predict(row)[0]))
+    from src.uncertainty import interval
     return {'device':device,'label':DEVICES[device][1],'horizon_minutes':10,'energy_wh':wh,'energy_kwh':wh/1000,
-            'cost_krw':wh/1000*price,'metrics':bundle['metrics'][device]['test'],
-            'test_rows':bundle['metrics'][device]['test_rows'],'cycle_scenario_r2':None,
+            'model_variant':variant,'energy_interval_wh':interval(device+('_extended' if variant=='extended' else ''),wh),
+            'cost_krw':wh/1000*price,'metrics':metrics,
+            'test_rows':bundle['metrics'][device]['test_rows'] if variant=='standard' else report['test_rows'],'cycle_scenario_r2':None,
             'note':'이 점수는 REFIT House2 가전의 최근 실측 기록으로 예측한 다음 10분 사용량 기준입니다. 임의 켜짐 계획·식기세척 코스 1회·다른 가정의 성능은 검증되지 않았습니다.'}
+
+
+from functools import lru_cache
+
+@lru_cache(maxsize=1)
+def load_extended():
+    import joblib
+    from pathlib import Path
+    return joblib.load(Path(__file__).resolve().parents[1]/'models/device_extended_model.joblib')
