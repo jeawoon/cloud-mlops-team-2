@@ -1,0 +1,24 @@
+services:
+  app:
+    image: ${ENERGY_IMAGE:?Set a commit-tagged image}
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    environment:
+      ENERGY_RELEASE: ${ENERGY_IMAGE}
+      PREDICTION_API_TOKEN: ${PREDICTION_API_TOKEN:?Set service token}
+      ENERGY_HISTORY_DB: /app/runtime-data/history.sqlite3
+    ports:
+      - '127.0.0.1:${ENERGY_UI_PORT:-8501}:8501'
+    volumes:
+      - history:/app/runtime-data
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: '3'
+volumes:
+  history:
+    external: true
+    name: energy-predictor_history
