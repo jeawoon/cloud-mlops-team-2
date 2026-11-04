@@ -3,6 +3,9 @@ set -euo pipefail
 # Run on EC2 from a checkout of the commit being deployed.
 cd "$(dirname "$0")/.."
 command -v docker >/dev/null || { echo 'Install Docker Engine and Compose first'; exit 1; }
+if ! docker info >/dev/null 2>&1; then
+  docker() { sudo docker "$@"; }
+fi
 docker compose version >/dev/null
 exec 9>/tmp/energy-predictor-deploy.lock
 flock -n 9 || { echo 'Another deployment is running'; exit 1; }
