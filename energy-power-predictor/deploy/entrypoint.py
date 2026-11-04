@@ -24,7 +24,7 @@ def main():
     signal.signal(signal.SIGTERM,lambda *_:sys.exit(0))
     signal.signal(signal.SIGINT,lambda *_:sys.exit(0))
     try:
-        children.append(subprocess.Popen([sys.executable,'api.py','--host','127.0.0.1','--port','8000']))
+        children.append(subprocess.Popen([sys.executable,'api.py','--host',os.environ.get('ENERGY_API_BIND','127.0.0.1'),'--port','8000']))
         children.append(subprocess.Popen([sys.executable,'-m','streamlit','run','app.py','--server.address','0.0.0.0','--server.port','8501','--server.headless','true','--browser.gatherUsageStats','false']))
         while all(c.poll() is None for c in children):time.sleep(.5)
         raise SystemExit('API 또는 UI가 종료되어 두 프로세스를 정리합니다.')
