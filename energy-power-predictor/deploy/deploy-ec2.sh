@@ -4,7 +4,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 command -v docker >/dev/null || { echo 'Install Docker Engine and Compose first'; exit 1; }
 if ! docker info >/dev/null 2>&1; then
-  docker() { sudo docker "$@"; }
+  docker() { sudo --preserve-env=ENERGY_IMAGE docker "$@"; }
 fi
 docker compose version >/dev/null
 exec 9>/tmp/energy-predictor-deploy.lock
