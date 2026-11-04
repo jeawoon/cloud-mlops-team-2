@@ -171,9 +171,18 @@ class OperationsTests(unittest.TestCase):
                 with self.assertRaises(HTTPError) as error:urlopen(url+'/api/docs',timeout=5)
                 self.assertEqual(error.exception.code,401)
                 self.assertEqual(urlopen(url+'/api/health',timeout=5).status,200)
+                logged=threading.Event()
+                signal=logging.Handler()
+                signal.emit=lambda record: logged.set() if 'route=/api/docs status=200' in record.getMessage() else None
+                logger=logging.getLogger('energy_api')
                 with self.assertLogs('energy_api',level='INFO') as captured:
-                    request=Request(url+'/api/docs',headers={'Authorization':'Bearer '+secret})
-                    with urlopen(request,timeout=5) as response:self.assertEqual(response.status,200)
+                    logger.addHandler(signal)
+                    try:
+                        request=Request(url+'/api/docs',headers={'Authorization':'Bearer '+secret})
+                        with urlopen(request,timeout=5) as response:self.assertEqual(response.status,200)
+                        # Response bytes can arrive before the server thread logs completion.
+                        self.assertTrue(logged.wait(5),'Successful request did not emit its redacted log')
+                    finally:logger.removeHandler(signal)
                 self.assertNotIn(secret,' '.join(captured.output))
         finally:server.shutdown();server.server_close();thread.join(timeout=5)
 
