@@ -1,0 +1,63 @@
+name: Deploy appliance simulator to EC2
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'energy-power-predictor/**'
+      - '.github/workflows/deploy-ec2.yml'
+permissions:
+  contents: read
+concurrency:
+  group: energy-predictor-production
+  cancel-in-progress: false
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+        working-directory: energy-power-predictor
+      - run: python -m unittest test_appliance_plan test_laundry test_device_forecast test_verification test_api test_verification_ui test_improvements
+        working-directory: energy-power-predictor
+  deploy:
+    if: vars.EC2_DEPLOY_ENABLED == 'true'
+    needs: test
+    runs-on: ubuntu-latest
+    environment: production
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure SSH
+        env:
+          SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.EC2_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+      - name: Upload exact revision and deploy
+        env:
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          EC2_USER: ${{ secrets.EC2_USER }}
+        run: |
+          test -n "$EC2_HOST" && test -n "$EC2_USER"
+          git archive HEAD | gzip > /tmp/energy-release.tar.gz
+          scp /tmp/energy-release.tar.gz "$EC2_USER@$EC2_HOST:/tmp/energy-release-$GITHUB_SHA.tar.gz"
+          ssh "$EC2_USER@$EC2_HOST" bash -s -- "$GITHUB_SHA" <<'REMOTE'
+          set -euo pipefail
+          revision="$1"
+          release="$HOME/energy-releases/$revision"
+          mkdir -p "$release"
+          tar -xzf "/tmp/energy-release-$revision.tar.gz" -C "$release"
+          cd "$release"
+          DEPLOY_REVISION="$revision" bash energy-power-predictor/deploy/deploy-ec2.sh
+          REMOTE
+      - name: Verify public web health
+        env:
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+        run: curl --fail --retry 5 --retry-delay 5 --max-time 20 "http://$EC2_HOST/_stcore/health"

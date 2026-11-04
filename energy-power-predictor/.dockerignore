@@ -15,3 +15,6 @@ deploy/*.env
 *.sqlite*
 *.db
 *history-access-key*
+* 2.py
+* 2.json
+* 2.md
