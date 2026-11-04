@@ -4,7 +4,7 @@
 
 ## 구성
 
-기존 EC2를 사용합니다. Nginx(80) → 호스트 loopback 8501 → Docker Compose app(Streamlit + 내부 API) → 모델/요금 계산 순서입니다. API 8000은 호스트 loopback으로 연결하며 기존 Nginx의 /api/ 경로를 유지합니다. Health 이외의 요청은 서비스 토큰 인증이 필요합니다. 기록은 Compose의 고정 프로젝트 `energy-predictor`의 history volume에 보관합니다. 새 EC2/ECS/로드밸런서를 만들지 않습니다.
+기존 EC2를 사용합니다. Nginx(80) → 호스트 loopback 8501 → Docker Compose app(Streamlit + 내부 API) → 모델/요금 계산 순서입니다. API 8000은 컨테이너 내부 전용이며, UI가 서비스 토큰으로 호출합니다. EC2 Nginx의 기존 /api/ 프록시는 공개하지 않고 404로 바꿔야 합니다. API 직접 검증은 docker exec로 수행합니다. 기록은 Compose의 고정 프로젝트 `energy-predictor`의 history volume에 보관합니다. 새 EC2/ECS/로드밸런서를 만들지 않습니다.
 
 ## 시작 전 확인
 
