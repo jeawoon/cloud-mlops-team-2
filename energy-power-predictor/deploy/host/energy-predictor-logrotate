@@ -1,0 +1,10 @@
+/var/log/energy-predictor/*.jsonl {
+    daily
+    maxsize 10M
+    rotate 14
+    missingok
+    notifempty
+    copytruncate
+    compress
+    delaycompress
+}

@@ -1,0 +1,7 @@
+[Unit]
+Description=Export energy feedback and Docker logs for CloudWatch
+After=docker.service
+[Service]
+Type=oneshot
+UMask=0077
+ExecStart=/usr/bin/python3 /usr/local/lib/energy-operations/log_bridge.py

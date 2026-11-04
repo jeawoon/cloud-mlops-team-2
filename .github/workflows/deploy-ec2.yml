@@ -21,7 +21,7 @@ jobs:
           python-version: '3.12'
       - run: pip install -r requirements.txt
         working-directory: energy-power-predictor
-      - run: python -m unittest test_feedback_log test_appliance_plan test_laundry test_device_forecast test_verification test_api test_verification_ui test_improvements
+      - run: python -m unittest test_host_operations test_feedback_log test_appliance_plan test_laundry test_device_forecast test_verification test_api test_verification_ui test_improvements
         working-directory: energy-power-predictor
   deploy:
     if: vars.EC2_DEPLOY_ENABLED == 'true'
