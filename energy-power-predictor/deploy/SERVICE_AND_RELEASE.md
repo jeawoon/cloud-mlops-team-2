@@ -53,3 +53,5 @@ EC2_HOST=13.124.57.226 EC2_KEY="$HOME/Downloads/energy-predictor-key.pem" bash d
 ```
 
 위 명령은 `energy-power-predictor` 폴더에서 실행합니다. 최초 SSH host fingerprint를 확인하고 known_hosts에 등록해야 합니다. AWS CLI 자격증명과 DescribeInstances 권한이 있다면 EC2_HOST 대신 EC2_INSTANCE_ID를 지정해 현재 공인 IP를 조회할 수도 있습니다. 인스턴스 생성/시작이나 유료 옵션 변경은 하지 않습니다.
+
+실측 기록: green(8502) 전환과 blue(8501) 재전환 모두 healthy를 확인했습니다. 두 번째 배포 중 외부 검사 40회 성공, 추가 실패 0회였습니다. 전체 기간에는 전환 전 Nginx 재시작과 겹친 연결 실패 2회가 있어 완전한 무중단을 보장하지는 않습니다.
