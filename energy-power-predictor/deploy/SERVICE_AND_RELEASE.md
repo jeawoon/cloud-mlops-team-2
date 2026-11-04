@@ -37,3 +37,19 @@ GitHub concurrency와 서버 flock으로 동시 배포를 제한하고, 고정 C
 공개 웹 health 응답 ok, API 정상 200과 잘못된 case_id 422, API/직접 모델 결과 일치를 확인했습니다. 실제 웹 입력 100W·60분·200원/kWh에서 0.1000kWh·20.00원이 표시됐습니다. Docker 로그에서 요청 경로/상태/처리시간 기록을 확인했습니다.
 
 GitHub Actions secrets/활성화 변수는 아직 설정하지 않았습니다. 자동 배포 성공이나 main 병합 후 배포 검증은 완료되지 않았습니다. 팀원의 실제 리뷰 후 병합해야 합니다. 새 AWS 리소스 생성이나 유료 요금제 결제는 하지 않았으며 기존 EC2 사용 요금은 별도입니다.
+
+## 블루·그린 배포 (2026-11-04)
+
+`deploy-ec2.sh`는 현재 Nginx upstream 8501/8502를 읽고 반대 포트의 `energy-blue` 또는 `energy-green` 프로젝트를 준비합니다. 활성 컨테이너는 새 이미지 테스트와 health 검사 동안 계속 실행됩니다. 검사 통과 후 nginx -t와 graceful reload로 연결을 전환하고 이전 컨테이너는 유지합니다. 전환/확인 실패 시 설정을 복원하고 후보 컨테이너만 중지합니다. 다음 배포에서는 비활성 슬롯을 재사용하므로 해당 슬롯의 오래된 연결은 종료될 수 있습니다. 최초 Docker 프로젝트의 컨테이너는 그 포트가 비활성일 때만 중지합니다.
+
+두 슬롯이 같은 외부 history volume을 사용합니다. SQLite schema의 호환되지 않는 변경은 이 절차로 자동 처리하지 않습니다. Streamlit 기존 WebSocket은 이전 프로세스에서 유지될 수 있지만 전체 세션 무손실은 보장하지 않습니다. 후보 health는 모델/API와 UI health를 검사하며 모든 브라우저 상태를 검사하지 않습니다.
+
+서버 메모리가 약 1GB이므로 최초 검증 시 기존 디스크에 1GB swap을 추가했습니다. 별도 인스턴스나 유료 리소스는 만들지 않았습니다. swap은 메모리 증설과 동등한 성능을 보장하지 않습니다.
+
+터미널에서 커밋된 코드를 한 번에 업로드/배포:
+
+```bash
+EC2_HOST=13.124.57.226 EC2_KEY="$HOME/Downloads/energy-predictor-key.pem" bash deploy/upload-ec2.sh
+```
+
+위 명령은 `energy-power-predictor` 폴더에서 실행합니다. 최초 SSH host fingerprint를 확인하고 known_hosts에 등록해야 합니다. AWS CLI 자격증명과 DescribeInstances 권한이 있다면 EC2_HOST 대신 EC2_INSTANCE_ID를 지정해 현재 공인 IP를 조회할 수도 있습니다. 인스턴스 생성/시작이나 유료 옵션 변경은 하지 않습니다.
