@@ -19,6 +19,20 @@ fi
 compose=(docker compose --env-file "$envfile" -f deploy/compose.ec2.yaml)
 "${compose[@]}" config --quiet
 "${compose[@]}" build app
+docker run --rm "$ENERGY_IMAGE" python -m unittest test_appliance_plan test_laundry test_device_forecast test_verification test_api test_verification_ui test_improvements
+smoke="energy-preflight-$revision"
+docker run -d --name "$smoke" --env-file "$envfile" "$ENERGY_IMAGE" >/dev/null
+ready=false
+for attempt in {1..30}; do
+  if docker exec "$smoke" python deploy/healthcheck.py >/dev/null 2>&1; then ready=true; break; fi
+  sleep 2
+done
+if [ "$ready" != true ]; then
+  docker logs --tail 40 "$smoke"
+  docker rm -f "$smoke" >/dev/null
+  exit 1
+fi
+docker rm -f "$smoke" >/dev/null
 # Fail before changing the existing application unless Nginx is configured.
 sudo nginx -t
 # Stop legacy services only after the new image was built successfully.
