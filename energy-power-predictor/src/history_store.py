@@ -32,6 +32,7 @@ def connect():
     db=sqlite3.connect(str(path),timeout=5)
     db.row_factory=sqlite3.Row
     db.execute('CREATE TABLE IF NOT EXISTS records (id TEXT PRIMARY KEY, owner TEXT NOT NULL, created TEXT NOT NULL, label TEXT NOT NULL, payload TEXT NOT NULL, result TEXT NOT NULL, model_version TEXT NOT NULL, actual_wh REAL)')
+    db.execute('CREATE TABLE IF NOT EXISTS feedback_events (event_id TEXT PRIMARY KEY, prediction_id TEXT NOT NULL, occurred_at TEXT NOT NULL, event_json TEXT NOT NULL)')
     db.execute('CREATE INDEX IF NOT EXISTS record_owner ON records(owner,created)')
     db.commit()
     try:
@@ -45,6 +46,8 @@ def _rows(db,owner):
     for row in rows:
         r=dict(row);r['payload']=json.loads(r['payload']);r['prediction']=json.loads(r.pop('result'))
         r['absolute_error_wh']=None if r['actual_wh'] is None else abs(r['actual_wh']-r['prediction']['selected_appliances_wh'])
+        latest=db.execute('SELECT event_json FROM feedback_events WHERE prediction_id=? ORDER BY rowid DESC LIMIT 1',(r['id'],)).fetchone()
+        r['evaluation']=None if latest is None else json.loads(latest['event_json']).get('assessment')
         result.append(r)
     return result
 
@@ -62,12 +65,17 @@ def handle(action,data,predictor):
         files=('device_forecast_model.joblib','larco_cycle_model.joblib','device_extended_model.joblib')
         hashes={name:hashlib.sha256((ROOT/'models'/name).read_bytes()).hexdigest() for name in files if (ROOT/'models'/name).exists()}
         record_id=secrets.token_hex(16)
+        from src.feedback_log import event,persist,export
+        feedback=event('prediction_saved',record_id,payload,result,json.dumps(hashes))
         with connect() as db:
             if db.execute('SELECT COUNT(*) FROM records WHERE owner=?',(owner,)).fetchone()[0]>=1000:
                 raise ValueError('브라우저별 기록은 1000개까지 저장할 수 있습니다. 내보낸 후 필요 없는 기록을 삭제하세요.')
             db.execute('INSERT INTO records VALUES (?,?,?,?,?,?,?,NULL)',(record_id,owner,datetime.now(timezone.utc).isoformat(),label,json.dumps(payload,allow_nan=False),json.dumps(result,allow_nan=False),json.dumps(hashes)))
+            persist(db,feedback)
+        export(feedback)
         return {'id':record_id,'saved':True,'note':'해당 서버 디스크에 저장했습니다. 브라우저 접근 키를 잃으면 조회할 수 없습니다. 파일은 암호화되지 않으며 OS 접근권한으로 제한됩니다.'}
     if action not in ('list','actual','delete'):raise ValueError('지원하지 않는 기록 작업')
+    feedback=None
     with connect() as db:
         if action in ('actual','delete'):
             record_id=data.get('id')
@@ -76,9 +84,18 @@ def handle(action,data,predictor):
             if action=='actual':
                 if data.get('scope_confirmed') is not True:raise ValueError('같은 가전·대수·예측 기간의 실측임을 확인하세요')
                 actual=numeric(data.get('actual_wh'),'실제 사용량 Wh',0,10000000)
+                cost=None if data.get('actual_cost_krw') is None else numeric(data['actual_cost_krw'],'실제 추가요금 원',0,100000000)
+                stored=db.execute('SELECT payload,result,model_version FROM records WHERE owner=? AND id=?',(owner,record_id)).fetchone()
+                from src.feedback_log import event,persist,export
+                feedback=event('actual_recorded',record_id,json.loads(stored['payload']),json.loads(stored['result']),stored['model_version'],actual,cost)
+                persist(db,feedback)
                 db.execute('UPDATE records SET actual_wh=? WHERE owner=? AND id=?',(actual,owner,record_id))
             else:
                 if data.get('confirm_delete') is not True:raise ValueError('삭제 확인이 필요합니다')
+                from src.feedback_log import persist,export
+                feedback=dict(schema_version=1,event_id=secrets.token_hex(16),prediction_id=record_id,event_type='record_deleted',occurred_at=datetime.now(timezone.utc).isoformat(),status='deleted',training_eligible=False)
+                persist(db,feedback)
                 db.execute('DELETE FROM records WHERE owner=? AND id=?',(owner,record_id))
         rows=_rows(db,owner)
+    if feedback is not None:export(feedback)
     return {'records':rows,'note':'최근 100개만 표시합니다. 임의 계획과 가전별 모델·예측 기간이 섞인 기록으로 전체 R²를 계산하지 않습니다.'}

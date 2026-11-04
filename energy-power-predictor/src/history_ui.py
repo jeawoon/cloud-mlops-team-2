@@ -11,7 +11,7 @@ def token():
 
 def save_controls(request_prediction,payload):
     with st.expander('동의 후 이 예측을 기록으로 저장'):
-        st.caption('자동 저장하지 않습니다. 동의하면 입력·모델 버전·예측을 이 서버 디스크에 저장합니다. CSV 파일 자체·계정·위치정보는 자동 수집하지 않습니다. 기록 이름에 개인정보를 입력하지 마세요. 접근 키를 잃으면 조회할 수 없으므로 결과와 비밀 복구키를 보관하세요.')
+        st.caption('자동 저장하지 않습니다. 동의하면 입력·모델 버전·예측과 이후 실측 오차를 이 서버 디스크와 재학습 검토용 로그에 저장합니다. CSV 파일 자체·계정·위치정보는 자동 수집하지 않습니다. 기록 이름에 개인정보를 입력하지 마세요. 접근 키를 잃으면 조회할 수 없으므로 결과와 비밀 복구키를 보관하세요.')
         label=st.text_input('기록 이름',value='선택 가전 계획',max_chars=80,key='record_label')
         consent=st.checkbox('해당 입력과 예측을 서버 디스크에 저장하는 데 동의합니다',key='record_consent')
         if st.button('이 예측 저장',disabled=not consent,key='save_prediction'):
@@ -44,12 +44,18 @@ def render_history(request_prediction):
     if record['actual_wh'] is not None:
         a,b=st.columns(2);a.metric('실제 Wh',f"{record['actual_wh']:.3f}");b.metric('절대오차 Wh',f"{record['absolute_error_wh']:.3f}")
     actual=st.number_input('같은 범위의 실제 측정 사용량 (Wh)',min_value=0.,max_value=10000000.,value=float(record['actual_wh'] or 0),key='actual_'+record['id'])
+    cost_known=st.checkbox('같은 범위의 실제 추가요금도 알고 있습니다',key='cost_known_'+record['id'])
+    actual_cost=st.number_input('실제 추가요금 (원)',min_value=0.,max_value=100000000.,key='actual_cost_'+record['id']) if cost_known else None
+    st.caption('실제 월 청구액 전체가 아닌 같은 가전·기간의 추가요금을 입력하세요. 요금을 모르면 가격 평가는 대기로 남습니다. 허용오차: 전력량 5Wh 또는 실측의 10%, 요금 1원 또는 실측의 10% 중 큰 값입니다.')
+    if record.get('evaluation'):
+        st.json(record['evaluation'])
     confirmed=st.checkbox('같은 가전·대수·예측 기간의 실측값입니다',key='scope_'+record['id'])
     if st.button('실측값 저장',disabled=not confirmed):
-        request_prediction('/api/records/actual',dict(owner_token=token(),id=record['id'],actual_wh=actual,scope_confirmed=confirmed));st.rerun()
+        request_prediction('/api/records/actual',dict(owner_token=token(),id=record['id'],actual_wh=actual,actual_cost_krw=actual_cost,scope_confirmed=confirmed));st.rerun()
     st.download_button('내 기록 JSON 내려받기',json.dumps(rows,ensure_ascii=False,indent=2),file_name='my-predictions.json',mime='application/json')
     st.caption(response['note'])
     with st.expander('이 기록 삭제'):
+        st.caption('앱 기록을 삭제하면 평가 로그에는 삭제 표시가 추가됩니다. 이전 평가 로그는 보관되며 재학습 대상에서 제외해야 합니다.')
         acknowledged=st.checkbox('이 기록을 삭제하면 앱에서 복구할 수 없음을 확인했습니다',key='delete_'+record['id'])
         if st.button('선택 기록 삭제',disabled=not acknowledged):
             request_prediction('/api/records/delete',dict(owner_token=token(),id=record['id'],confirm_delete=acknowledged));st.rerun()
