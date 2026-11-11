@@ -58,7 +58,7 @@ def render_plan(request_prediction,mode='simple'):
                 temp=st.number_input('시작 전 주변 온도 (°C)',min_value=entry['ambient_min'],max_value=entry['ambient_max'],value=25.,step=1.,key='plan_temp_'+machine)
                 start=st.number_input('몇 분 후 시작하나요?',min_value=0.0,max_value=1440.0,value=0.0,step=5.0,key='plan_laundry_start')
                 settings=dict(machine=machine,program=option['program'],heat=option['heat'],load_kg=weight,ambient_temp=temp)
-                st.caption('실측 세탁코스 1회 완료까지 예측합니다. 실제 시간은 모델이 추정하며 중간에 끄는 시나리오는 지원하지 않습니다. 검증 R² 0.8835는 이 범위에만 해당합니다.')
+                st.caption(f"실측 세탁코스 1회 완료까지 예측합니다. 실제 시간은 모델이 추정하며 중간에 끄는 시나리오는 지원하지 않습니다. 검증 R² {laundry['metrics']['reports']['energy']['test']['r2']:.4f}는 이 범위에만 해당합니다.")
             else:
                 method='recent_forecast';start=0
                 source=st.radio('최근 기록 입력 방법',['직접 입력','CSV 업로드'],horizontal=True,key='input_source_'+key)
