@@ -32,3 +32,4 @@ else:
     output=render_plan(request_prediction,'simple' if page=='간편 계산' else 'ai')
     if output is not None:save_controls(request_prediction,output[0])
     render_verification(request_prediction)
+st.caption('재학습용 정답 수집: 예측을 동의 후 저장하고, 사용이 끝나면 내 기록에서 같은 가전·대수·기간의 실제 Wh를 입력하세요. 저장한 예측값 자체는 정답으로 사용하지 않습니다.')
