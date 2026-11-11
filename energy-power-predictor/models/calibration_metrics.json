@@ -2,7 +2,7 @@
   "models_sha256": {
     "device_forecast_model.joblib": "cefad65bf466b0f9bb0aa4a2e5644ac8000df0df4433d86833f20ebd3ca20f6a",
     "device_extended_model.joblib": "0692115f79780d926fbfe85fc0f4f0777fb44ea594662f665a65357be9fc6be6",
-    "larco_cycle_model.joblib": "4f246d8db216dce0fec19a30426d58afb18b134baf36afd85ee9a7a74d575478"
+    "larco_cycle_model.joblib": "25f5c17fdb569850db543590035dc291a3c60e4196974cf043d68d043b16d651"
   },
   "calibrations": {
     "fridge": {
@@ -43,7 +43,9 @@
       "calibration_rows": 64,
       "evaluation_rows": 67,
       "observed_coverage": 0.9552238805970149,
-      "note": "기존 테스트 전반부 잔차로 보정하고 후반부에서 포함률 확인. 시계열 의존·분포 변화가 있어 90% 포함을 보장하지 않습니다. 새 독립 테스트가 아닙니다."
+      "note": "기존 테스트 전반부 잔차로 보정하고 후반부에서 포함률 확인. 시계열 의존·분포 변화가 있어 90% 포함을 보장하지 않습니다. 새 독립 테스트가 아닙니다. 새 모델 구간은 이전 배포 구간 폭보다 축소하지 않았습니다.",
+      "new_calibration_radius_wh": 193.009836460192,
+      "radius_rule": "Do not narrow below the previous release radius without fresh calibration labels"
     }
   },
   "experiments": {

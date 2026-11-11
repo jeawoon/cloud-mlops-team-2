@@ -21,7 +21,7 @@ esac
 compose=(docker compose -p "energy-$slot" --env-file "$envfile" -f deploy/compose.ec2.yaml)
 "${compose[@]}" config --quiet
 "${compose[@]}" build app
-docker run --rm "$ENERGY_IMAGE" python -m unittest test_host_operations test_feedback_log test_appliance_plan test_laundry test_device_forecast test_verification test_api test_verification_ui test_improvements
+docker run --rm "$ENERGY_IMAGE" python -m unittest test_retraining test_feedback_preparation test_host_operations test_feedback_log test_appliance_plan test_laundry test_device_forecast test_verification test_api test_verification_ui test_improvements
 # Shared SQLite requires compatible schema; migrations must be planned separately.
 docker volume inspect energy-predictor_history >/dev/null
 sudo nginx -t

@@ -158,33 +158,183 @@
   "reports": {
     "energy": {
       "unit": "Wh per complete washing cycle",
-      "selected": "ridge",
+      "selected": "svr_g0.01_C5000",
       "validation": {
-        "ridge": {
+        "existing_spec": {
           "r2": 0.8188340932526603,
           "mae": 140.76625470289864,
           "rmse": 210.49043934364568
         },
-        "gradient_depth2": {
-          "r2": 0.7753693438082226,
-          "mae": 162.44132073950337,
-          "rmse": 234.3843722845997
+        "extra_leaf1": {
+          "r2": 0.7513655220960993,
+          "mae": 158.13374395833307,
+          "rmse": 246.5896331001722
         },
-        "gradient_depth3": {
-          "r2": 0.8017207213352902,
-          "mae": 149.1566657970887,
-          "rmse": 220.2078535620472
+        "forest_leaf1": {
+          "r2": 0.7903288030994868,
+          "mae": 143.51587458333316,
+          "rmse": 226.44541193482968
         },
-        "extra_trees": {
-          "r2": 0.7865064983603361,
-          "mae": 152.11059506445326,
-          "rmse": 228.50013910471995
+        "extra_leaf2": {
+          "r2": 0.7840671578232059,
+          "mae": 152.6263885954243,
+          "rmse": 229.80183334674354
+        },
+        "forest_leaf2": {
+          "r2": 0.792387465736369,
+          "mae": 146.57489125213772,
+          "rmse": 225.33098931623184
+        },
+        "extra_leaf4": {
+          "r2": 0.7745522514879857,
+          "mae": 156.54143675214837,
+          "rmse": 234.8102710298274
+        },
+        "forest_leaf4": {
+          "r2": 0.7837511244381745,
+          "mae": 151.613276418623,
+          "rmse": 229.9699376910546
+        },
+        "gradient_d2_400": {
+          "r2": 0.7815187079033378,
+          "mae": 157.84888055075814,
+          "rmse": 231.15392190921966
+        },
+        "gradient_d2_800": {
+          "r2": 0.7816226112874961,
+          "mae": 157.8370015501518,
+          "rmse": 231.09895031251133
+        },
+        "gradient_d3_400": {
+          "r2": 0.7996604982675561,
+          "mae": 152.27992755163078,
+          "rmse": 221.3489332072366
+        },
+        "gradient_d3_800": {
+          "r2": 0.8060775240737718,
+          "mae": 152.7106659427976,
+          "rmse": 217.77509521727717
+        },
+        "gradient_d4_400": {
+          "r2": 0.8116806585255855,
+          "mae": 137.69199557789136,
+          "rmse": 214.6058725625123
+        },
+        "gradient_d4_800": {
+          "r2": 0.8156264337418082,
+          "mae": 136.77424345212134,
+          "rmse": 212.34569789766022
+        },
+        "svr_g0.01_C100": {
+          "r2": 0.776281919729243,
+          "mae": 167.40261996298477,
+          "rmse": 233.90778725528475
+        },
+        "svr_g0.01_C1000": {
+          "r2": 0.8070068848669624,
+          "mae": 138.94331625234918,
+          "rmse": 217.2526320416445
+        },
+        "svr_g0.01_C5000": {
+          "r2": 0.836979934219879,
+          "mae": 122.54188977883987,
+          "rmse": 199.67085178131325
+        },
+        "kernel_g0.01_a0.01": {
+          "r2": 0.8480128125565445,
+          "mae": 127.12608832441498,
+          "rmse": 192.79582622399695
+        },
+        "kernel_g0.01_a0.1": {
+          "r2": 0.8173552475271413,
+          "mae": 140.4556033724111,
+          "rmse": 211.347803254067
+        },
+        "kernel_g0.01_a1": {
+          "r2": 0.7736742493417309,
+          "mae": 166.91244027145814,
+          "rmse": 235.26705888375227
+        },
+        "svr_g0.05_C100": {
+          "r2": 0.7452840732712422,
+          "mae": 159.12622832528916,
+          "rmse": 249.58713116297244
+        },
+        "svr_g0.05_C1000": {
+          "r2": 0.792265640050043,
+          "mae": 129.59541904657215,
+          "rmse": 225.39709100096454
+        },
+        "svr_g0.05_C5000": {
+          "r2": 0.8139881012859643,
+          "mae": 125.9701727871174,
+          "rmse": 213.28705687814679
+        },
+        "kernel_g0.05_a0.01": {
+          "r2": 0.7103964923035145,
+          "mae": 154.34615328696785,
+          "rmse": 266.13135640726153
+        },
+        "kernel_g0.05_a0.1": {
+          "r2": 0.7804140967416904,
+          "mae": 143.3140162703109,
+          "rmse": 231.73752629515505
+        },
+        "kernel_g0.05_a1": {
+          "r2": 0.7207778024247178,
+          "mae": 165.4989884393757,
+          "rmse": 261.3178696348455
+        },
+        "svr_g0.2_C100": {
+          "r2": 0.6052208931050254,
+          "mae": 170.81818479528633,
+          "rmse": 310.72143840628144
+        },
+        "svr_g0.2_C1000": {
+          "r2": 0.7385190102355442,
+          "mae": 140.94782326942766,
+          "rmse": 252.87983454783702
+        },
+        "svr_g0.2_C5000": {
+          "r2": 0.694982562679783,
+          "mae": 155.42182736864137,
+          "rmse": 273.12186701606004
+        },
+        "kernel_g0.2_a0.01": {
+          "r2": 0.5482932574475251,
+          "mae": 182.6441167268868,
+          "rmse": 332.3704654015885
+        },
+        "kernel_g0.2_a0.1": {
+          "r2": 0.5707578862347319,
+          "mae": 173.2299483617981,
+          "rmse": 324.00021694940386
+        },
+        "kernel_g0.2_a1": {
+          "r2": 0.47573555181625093,
+          "mae": 189.82887141294123,
+          "rmse": 358.0711595025553
+        },
+        "hist_7": {
+          "r2": 0.808203374635154,
+          "mae": 152.7042699812743,
+          "rmse": 216.57813987125004
+        },
+        "hist_15": {
+          "r2": 0.7981845433563101,
+          "mae": 158.92128227229156,
+          "rmse": 222.16280547166326
+        },
+        "hist_31": {
+          "r2": 0.8104562624994383,
+          "mae": 154.26877625496434,
+          "rmse": 215.30239384759247
         }
       },
       "test": {
-        "r2": 0.8834631078705013,
-        "mae": 98.62665161960442,
-        "rmse": 126.9162081137316
+        "r2": 0.898124082747967,
+        "mae": 87.32517231143562,
+        "rmse": 118.66458868269747
       },
       "machine_mean_baseline": {
         "r2": -0.31519782917424277,
@@ -198,7 +348,7 @@
           "heat": "0",
           "load_kg": 2.0,
           "actual": 125.198,
-          "predicted": 100.28651007853551
+          "predicted": 94.27863774338664
         },
         {
           "machine": "KUBO-1_KBWM8321",
@@ -206,7 +356,7 @@
           "heat": "40",
           "load_kg": 2.0,
           "actual": 645.582,
-          "predicted": 528.2668537794254
+          "predicted": 558.184462961131
         },
         {
           "machine": "KUBO-1_KBWM8321",
@@ -214,7 +364,7 @@
           "heat": "40-60",
           "load_kg": 4.0,
           "actual": 1005.782,
-          "predicted": 707.4741052023219
+          "predicted": 622.3228272350735
         },
         {
           "machine": "KUBO-1_KBWM8321",
@@ -222,7 +372,7 @@
           "heat": "40",
           "load_kg": 4.0,
           "actual": 624.378,
-          "predicted": 737.2373441636014
+          "predicted": 759.8647045122684
         },
         {
           "machine": "KUBO-1_KBWM8321",
@@ -230,7 +380,7 @@
           "heat": "60",
           "load_kg": 4.0,
           "actual": 1236.974,
-          "predicted": 1322.3255032831546
+          "predicted": 1351.2838359668413
         },
         {
           "machine": "KUBO-1_KBWM8321",
@@ -238,7 +388,7 @@
           "heat": "40",
           "load_kg": 4.0,
           "actual": 668.814,
-          "predicted": 671.6485967133668
+          "predicted": 654.7578820082213
         },
         {
           "machine": "KUBO-1_KBWM8321",
@@ -246,7 +396,7 @@
           "heat": "40",
           "load_kg": 5.0,
           "actual": 685.86,
-          "predicted": 743.3394681803375
+          "predicted": 699.406804897642
         },
         {
           "machine": "KUBO-1_KBWM8321",
@@ -254,7 +404,7 @@
           "heat": "90",
           "load_kg": 5.0,
           "actual": 2019.823,
-          "predicted": 1947.505053464256
+          "predicted": 2077.935132025967
         },
         {
           "machine": "KUBO-1_KBWM8321",
@@ -262,7 +412,7 @@
           "heat": "20",
           "load_kg": 2.0,
           "actual": 136.284,
-          "predicted": 117.45561241531806
+          "predicted": 117.15693974075373
         },
         {
           "machine": "KUBO-1_KBWM8321",
@@ -270,7 +420,7 @@
           "heat": "30",
           "load_kg": 5.0,
           "actual": 308.161,
-          "predicted": 530.8954056123695
+          "predicted": 525.3689952961982
         }
       ]
     },
@@ -394,5 +544,949 @@
     }
   },
   "whole_house_scenario_r2": null,
-  "note": "Measured complete-cycle energy labels. Not next-10-minute labels or arbitrary household counterfactual outcomes. Does not establish performance on unseen appliance models or Korean homes."
+  "note": "Measured complete-cycle energy labels. Not next-10-minute labels or arbitrary household counterfactual outcomes. Does not establish performance on unseen appliance models or Korean homes.",
+  "retraining": {
+    "source": "https://zenodo.org/records/18657997",
+    "license": "CC-BY-4.0",
+    "source_sha256": "23f8a0b79fb0719dd8d2f94fd592cab83c4085364a80ffe7d33f79803fadcc37",
+    "baseline_sha256": "4f246d8db216dce0fec19a30426d58afb18b134baf36afd85ee9a7a74d575478",
+    "selected": "svr_g0.01_C5000",
+    "candidate_count": 34,
+    "selection": "minimum validation MAE; test only compares the validation-selected finalist",
+    "validation": {
+      "existing_spec": {
+        "r2": 0.8188340932526603,
+        "mae": 140.76625470289864,
+        "rmse": 210.49043934364568
+      },
+      "extra_leaf1": {
+        "r2": 0.7513655220960993,
+        "mae": 158.13374395833307,
+        "rmse": 246.5896331001722
+      },
+      "forest_leaf1": {
+        "r2": 0.7903288030994868,
+        "mae": 143.51587458333316,
+        "rmse": 226.44541193482968
+      },
+      "extra_leaf2": {
+        "r2": 0.7840671578232059,
+        "mae": 152.6263885954243,
+        "rmse": 229.80183334674354
+      },
+      "forest_leaf2": {
+        "r2": 0.792387465736369,
+        "mae": 146.57489125213772,
+        "rmse": 225.33098931623184
+      },
+      "extra_leaf4": {
+        "r2": 0.7745522514879857,
+        "mae": 156.54143675214837,
+        "rmse": 234.8102710298274
+      },
+      "forest_leaf4": {
+        "r2": 0.7837511244381745,
+        "mae": 151.613276418623,
+        "rmse": 229.9699376910546
+      },
+      "gradient_d2_400": {
+        "r2": 0.7815187079033378,
+        "mae": 157.84888055075814,
+        "rmse": 231.15392190921966
+      },
+      "gradient_d2_800": {
+        "r2": 0.7816226112874961,
+        "mae": 157.8370015501518,
+        "rmse": 231.09895031251133
+      },
+      "gradient_d3_400": {
+        "r2": 0.7996604982675561,
+        "mae": 152.27992755163078,
+        "rmse": 221.3489332072366
+      },
+      "gradient_d3_800": {
+        "r2": 0.8060775240737718,
+        "mae": 152.7106659427976,
+        "rmse": 217.77509521727717
+      },
+      "gradient_d4_400": {
+        "r2": 0.8116806585255855,
+        "mae": 137.69199557789136,
+        "rmse": 214.6058725625123
+      },
+      "gradient_d4_800": {
+        "r2": 0.8156264337418082,
+        "mae": 136.77424345212134,
+        "rmse": 212.34569789766022
+      },
+      "svr_g0.01_C100": {
+        "r2": 0.776281919729243,
+        "mae": 167.40261996298477,
+        "rmse": 233.90778725528475
+      },
+      "svr_g0.01_C1000": {
+        "r2": 0.8070068848669624,
+        "mae": 138.94331625234918,
+        "rmse": 217.2526320416445
+      },
+      "svr_g0.01_C5000": {
+        "r2": 0.836979934219879,
+        "mae": 122.54188977883987,
+        "rmse": 199.67085178131325
+      },
+      "kernel_g0.01_a0.01": {
+        "r2": 0.8480128125565445,
+        "mae": 127.12608832441498,
+        "rmse": 192.79582622399695
+      },
+      "kernel_g0.01_a0.1": {
+        "r2": 0.8173552475271413,
+        "mae": 140.4556033724111,
+        "rmse": 211.347803254067
+      },
+      "kernel_g0.01_a1": {
+        "r2": 0.7736742493417309,
+        "mae": 166.91244027145814,
+        "rmse": 235.26705888375227
+      },
+      "svr_g0.05_C100": {
+        "r2": 0.7452840732712422,
+        "mae": 159.12622832528916,
+        "rmse": 249.58713116297244
+      },
+      "svr_g0.05_C1000": {
+        "r2": 0.792265640050043,
+        "mae": 129.59541904657215,
+        "rmse": 225.39709100096454
+      },
+      "svr_g0.05_C5000": {
+        "r2": 0.8139881012859643,
+        "mae": 125.9701727871174,
+        "rmse": 213.28705687814679
+      },
+      "kernel_g0.05_a0.01": {
+        "r2": 0.7103964923035145,
+        "mae": 154.34615328696785,
+        "rmse": 266.13135640726153
+      },
+      "kernel_g0.05_a0.1": {
+        "r2": 0.7804140967416904,
+        "mae": 143.3140162703109,
+        "rmse": 231.73752629515505
+      },
+      "kernel_g0.05_a1": {
+        "r2": 0.7207778024247178,
+        "mae": 165.4989884393757,
+        "rmse": 261.3178696348455
+      },
+      "svr_g0.2_C100": {
+        "r2": 0.6052208931050254,
+        "mae": 170.81818479528633,
+        "rmse": 310.72143840628144
+      },
+      "svr_g0.2_C1000": {
+        "r2": 0.7385190102355442,
+        "mae": 140.94782326942766,
+        "rmse": 252.87983454783702
+      },
+      "svr_g0.2_C5000": {
+        "r2": 0.694982562679783,
+        "mae": 155.42182736864137,
+        "rmse": 273.12186701606004
+      },
+      "kernel_g0.2_a0.01": {
+        "r2": 0.5482932574475251,
+        "mae": 182.6441167268868,
+        "rmse": 332.3704654015885
+      },
+      "kernel_g0.2_a0.1": {
+        "r2": 0.5707578862347319,
+        "mae": 173.2299483617981,
+        "rmse": 324.00021694940386
+      },
+      "kernel_g0.2_a1": {
+        "r2": 0.47573555181625093,
+        "mae": 189.82887141294123,
+        "rmse": 358.0711595025553
+      },
+      "hist_7": {
+        "r2": 0.808203374635154,
+        "mae": 152.7042699812743,
+        "rmse": 216.57813987125004
+      },
+      "hist_15": {
+        "r2": 0.7981845433563101,
+        "mae": 158.92128227229156,
+        "rmse": 222.16280547166326
+      },
+      "hist_31": {
+        "r2": 0.8104562624994383,
+        "mae": 154.26877625496434,
+        "rmse": 215.30239384759247
+      }
+    },
+    "before": {
+      "r2": 0.8834631078705013,
+      "mae": 98.62665161960442,
+      "rmse": 126.9162081137316
+    },
+    "after": {
+      "r2": 0.898124082747967,
+      "mae": 87.32517231143562,
+      "rmse": 118.66458868269747
+    },
+    "mae_reduction_pct": 11.458849228459819,
+    "r2_delta": 0.014660974877465649,
+    "train_cycles": 383,
+    "validation_cycles": 128,
+    "test_cycles": 131,
+    "promotion_eligible": true,
+    "operating_feedback_labels_used": 0,
+    "scope": "Previously inspected LARCO laboratory cycle test; retrospective experiment, not fresh independent evaluation or operating-log retraining",
+    "targets_unchanged": true,
+    "duration_model_changed": false,
+    "split_ids": {
+      "train": [
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_hot_cotton_30_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_hot_cotton_40_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_hot_cotton_60_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/eco/wm_KUBO-1_KBWM8321_hot_eco_40-60_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_hot_cold_20_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_hot_cotton_30_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_hot_cotton_40_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_hot_cotton_60_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/eco/wm_KUBO-1_KBWM8321_hot_eco_40-60_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_hot_cold_20_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_hot_cold_0_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_hot_cold_0_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_hot_cotton_30_4.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_hot_cotton_40_4.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_hot_cotton_60_4.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/eco/wm_KUBO-1_KBWM8321_hot_eco_40-60_4.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_hot_cold_0_4.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_hot_cold_20_4.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_hot_cotton_30_5.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_hot_cotton_40_5.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_hot_cotton_60_5.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/eco/wm_KUBO-1_KBWM8321_hot_eco_40-60_5.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_hot_cold_0_5.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_cotton-intensive_40_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_delicate_30_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_delicate_0_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_cotton-intensive_60_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_fast-45_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_fast-30_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_fast-15_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_synthetic_0_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_synthetic_40_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_cotton-intensive_60_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_cotton-intensive_40_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_delicate_30_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_delicate_0_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_synthetic_40_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_synthetic_0_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_fast-45_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_fast-30_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_fast-15_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_cotton-intensive_40_4.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_cotton-intensive_60_4.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_synthetic_40_5.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_synthetic_0_5.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_synthetic_0_4.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_synthetic_40_4.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_delicate_30_4.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_delicate_0_4.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_cotton-intensive_40_5.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_cotton-intensive_60_5.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_delicate_0_5.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_delicate_30_5.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_fast-45_4.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_fast-30_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_cotton-intensive_40_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_cotton-intensive_60_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_fast-30_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_fast-45_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_delicate_30_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_synthetic_0_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_cold_cotton_30_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_cold_cotton_40_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_cold_cotton_60_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/eco/wm_KUBO-2_KBWM8321_cold_eco_40-60_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_cold_cold_0_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_cold_cotton-prewash_40_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_cold_cotton_30_2.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_cold_cotton_40_2.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_cold_cotton_60_2.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_cold_cotton_90_2.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/eco/wm_KUBO-2_KBWM8321_cold_eco_40-60_2.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_cold_cotton_90_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_cold_cotton_90_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_cold_cotton_30_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_cold_cotton-prewash_40_2.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_cold_cold_0_2.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/eco/wm_KUBO-2_KBWM8321_cold_eco_40-60_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_cold_cotton_40_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_cold_cold_20_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_cold_cotton-prewash_40_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_cold_cotton_60_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_cold_cotton_60_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_cold_cotton_40_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/eco/wm_KUBO-2_KBWM8321_cold_eco_40-60_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_cold_cold_0_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_cold_cotton_90_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_cold_cotton-prewash_40_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_cold_cotton_30_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_cold_cold_0_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_cold_cold_20_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_hot_cotton_90_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_hot_cotton_60_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_hot_cotton_30_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_hot_cotton_30_2.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_hot_cotton_30_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_hot_cotton_40_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_hot_cotton_40_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_hot_cotton_40_2.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_hot_cotton_40_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_hot_cotton_60_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_hot_cotton_60_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_hot_cotton_30_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_hot_cold_0_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_hot_cotton_90_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/eco/wm_KUBO-2_KBWM8321_hot_eco_40-60_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_hot_cotton_60_2.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/cotton/wm_KUBO-2_KBWM8321_hot_cotton_90_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/eco/wm_KUBO-2_KBWM8321_hot_eco_40-60_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/eco/wm_KUBO-2_KBWM8321_hot_eco_40-60_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_cold_cotton_0_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_cold_cotton_0_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_cold_cotton_0_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_cold_cotton_20_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/eco/wm_KUNFT_KWM5316_cold_eco_40-60_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_cold_cotton_40_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_cold_cotton_40_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_cold_cotton_40_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_cold_cotton_60_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_cold_cotton_20_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_cold_cotton_60_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_cold_cotton_40_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_cold_cotton_60_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_cold_cotton_60_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/eco/wm_KUNFT_KWM5316_cold_eco_40-60_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_cold_cotton_20_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_cold_cotton_20_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_cold_cotton_0_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/eco/wm_KUNFT_KWM5316_cold_eco_40-60_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/eco/wm_KUNFT_KWM5316_cold_eco_40-60_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_hot_cotton_40_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_hot_cotton_40_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_hot_cotton_40_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/eco/wm_KUNFT_KWM5316_hot_eco_40-60_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_hot_cotton_60_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_hot_cotton_60_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/eco/wm_KUNFT_KWM5316_hot_eco_40-60_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/eco/wm_KUNFT_KWM5316_hot_eco_40-60_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/eco/wm_KUNFT_KWM5316_hot_eco_40-60_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_hot_cotton_60_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_hot_cotton_60_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_hot_cotton_40_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_hot_cotton_20_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_hot_cotton_20_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_hot_cotton_20_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_hot_cotton_0_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_hot_cotton_0_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_hot_cotton_0_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_hot_cotton_20_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/cotton/wm_KUNFT_KWM5316_hot_cotton_0_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_synthetic_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_mix_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_synthetic_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_mix_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_synthetic_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_synthetic_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_mix_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_mix_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_cold_cotton_0_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_cold_cotton_0_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_cold_cotton_20_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_cold_cotton_0_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_cold_cotton_0_7.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_cold_cotton_40_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_cold_cotton_40_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_cold_cotton_40_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_cold_cotton_60_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_cold_cotton_20_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_cold_cotton_40_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_cold_cotton_60_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_cold_cotton_60_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/eco/wm_KUNFT_KWM5317_cold_eco_40-60_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/eco/wm_KUNFT_KWM5317_cold_eco_40-60_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/eco/wm_KUNFT_KWM5317_cold_eco_40-60_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_cold_cotton_20_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/eco/wm_KUNFT_KWM5317_cold_eco_40-60_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/eco/wm_KUNFT_KWM5317_cold_eco_40-60_7.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_cold_cotton_60_7.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_cold_cotton_20_7.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_cold_cotton_60_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_cold_cotton_40_7.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_cold_cotton_20_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_cold_cotton_0_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_hot_cotton_40_7.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/eco/wm_KUNFT_KWM5317_hot_eco_40-60_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_hot_cotton_40_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/eco/wm_KUNFT_KWM5317_hot_eco_40-60_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_hot_cotton_60_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/eco/wm_KUNFT_KWM5317_hot_eco_40-60_7.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_hot_cotton_60_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_hot_cotton_40_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_hot_cotton_0_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_hot_cotton_60_7.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_hot_cotton_0_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_hot_cotton_60_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_hot_cotton_20_7.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/eco/wm_KUNFT_KWM5317_hot_eco_40-60_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_hot_cotton_60_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/eco/wm_KUNFT_KWM5317_hot_eco_40-60_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_hot_cotton_40_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_hot_cotton_20_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_hot_cotton_20_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_hot_cotton_0_7.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_hot_cotton_20_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_hot_cotton_20_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_hot_cotton_0_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_hot_cotton_0_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_synthetic_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_mix_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_synthetic_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_synthetic_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_jeans_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_mix_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_synthetic_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_synthetic_7.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_20-deg_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_mix_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_mix_7.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_0_0.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_0_11.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_0_2.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_0_4.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_0_8.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_0_6.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_30_2.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_0_10.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_30_0.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_30_6.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_30_4.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_30_11.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_40_0.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_60_0.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_30_10.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_30_8.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_40_6.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_40_4.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_40_8.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/eco/wm_becken-flt_BWM5381IX_hot_eco_40-60_2.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_40_11.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/eco/wm_becken-flt_BWM5381IX_hot_eco_40-60_0.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_60_11.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_60_4.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_60_6.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/eco/wm_becken-flt_BWM5381IX_hot_eco_40-60_4.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_fast-15_0.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_60_8.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/eco/wm_becken-flt_BWM5381IX_hot_eco_40-60_6.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/eco/wm_becken-flt_BWM5381IX_hot_eco_40-60_11.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_60_10.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/eco/wm_becken-flt_BWM5381IX_hot_eco_40-60_10.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/eco/wm_becken-flt_BWM5381IX_hot_eco_40-60_8.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_0_6.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_30_0.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_0_0.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_40_0.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_60_0.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/eco/wm_becken-flt_BWM5381IX_cold_eco_40-60_0.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_fast-45_40_0.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_sport_40_0.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_wool_0.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_30_6.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_0_4.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_0_2.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_0_8.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_40_6.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_30_4.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_0_10.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_30_2.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_30_8.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_40_2.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_0_11.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_60_2.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_40_4.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_30_11.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_60_4.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_60_8.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_60_6.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_30_10.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/eco/wm_becken-flt_BWM5381IX_cold_eco_40-60_4.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_40_10.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/eco/wm_becken-flt_BWM5381IX_cold_eco_40-60_2.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_hot_cotton_0_0.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_hot_cotton_40_0.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_cold_cotton_30_0.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_hot_cotton_60_0.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/eco/wm_becken_BWM5379IX_cold_eco_40-60_0.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_cold_cotton_60_0.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_cold_cotton_0_0.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_cold_cotton_40_0.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_hot_cotton_30_0.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_cold_cotton_0_2.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_cold_cotton_30_2.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_cold_cotton_40_2.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_cold_cotton_60_2.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/eco/wm_becken_BWM5379IX_cold_eco_40-60_2.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_hot_cotton_0_2.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_hot_cotton_30_2.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_hot_cotton_40_2.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_hot_cotton_60_2.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/eco/wm_becken_BWM5379IX_hot_eco_40-60_2.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_hot_cotton_30_4.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_hot_cotton_0_4.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_hot_cotton_40_4.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_hot_cotton_60_4.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/eco/wm_becken_BWM5379IX_hot_eco_40-60_4.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_cold_cotton_0_4.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_cold_cotton_30_4.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_cold_cotton_40_4.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_cold_cotton_60_4.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/eco/wm_becken_BWM5379IX_cold_eco_40-60_4.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_cold_cotton_0_6.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_cold_cotton_30_6.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_cold_cotton_40_6.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_cold_cotton_60_6.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/eco/wm_becken_BWM5379IX_cold_eco_40-60_6.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_hot_cotton_0_6.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_hot_cotton_30_6.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_hot_cotton_40_6.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_hot_cotton_60_6.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/eco/wm_becken_BWM5379IX_hot_eco_40-60_6.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_hot_cotton_0_7.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_hot_cotton_30_7.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_hot_cotton_40_7.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_hot_cotton_60_7.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/eco/wm_becken_BWM5379IX_hot_eco_40-60_7.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_cold_cotton_0_7.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_cold_cotton_30_7.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_cold_cotton_40_7.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_0_0.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_30_0.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_40_0.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_60_0.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/eco/wm_becken_BWM5381IX_hot_eco_40-60_0.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_0_2.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_30_2.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_40_2.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_60_2.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/eco/wm_becken_BWM5381IX_hot_eco_40-60_2.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_0_4.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_30_4.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_40_4.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_60_4.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/eco/wm_becken_BWM5381IX_hot_eco_40-60_4.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_0_6.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_30_6.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_40_6.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_60_6.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/eco/wm_becken_BWM5381IX_hot_eco_40-60_6.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_0_8.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_30_8.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_40_8.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_60_8.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/eco/wm_becken_BWM5381IX_hot_eco_40-60_8.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_0_10.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_40_10.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_60_10.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/eco/wm_becken_BWM5381IX_hot_eco_40-60_10.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_0_11.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_30_11.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_40_11.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_60_11.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/eco/wm_becken_BWM5381IX_hot_eco_40-60_11.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_0_0.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_30_0.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_40_0.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_60_0.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/eco/wm_becken_BWM5381IX_cold_eco_40-60_0.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_40_2.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_0_2.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_30_2.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_60_2.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/eco/wm_becken_BWM5381IX_cold_eco_40-60_2.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_0_4.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_30_4.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_40_4.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_60_4.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/eco/wm_becken_BWM5381IX_cold_eco_40-60_4.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_0_6.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_30_6.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_40_6.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_60_6.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/eco/wm_becken_BWM5381IX_cold_eco_40-60_6.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_0_8.csv"
+      ],
+      "validation": [
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_fast-15_4.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_fast-45_5.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_fast-30_5.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_warm_fast-15_5.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_cold_cotton_30_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_cold_cotton_40_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_cold_cotton_60_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/eco/wm_KUBO-1_KBWM8321_cold_eco_40-60_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_cold_cold_20_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_cold_cotton-prewash_40_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_cold_cotton_30_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_cold_cotton_40_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_cold_cotton_60_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_cold_cotton_90_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/eco/wm_KUBO-1_KBWM8321_cold_eco_40-60_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_cold_cotton_90_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_cold_cotton_90_4.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_cold_cotton_30_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_hot_cotton-prewash_40_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_hot_cotton-prewash_40_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_hot_cotton-prewash_40_2.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_hot_cotton-prewash_40_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/eco/wm_KUBO-2_KBWM8321_hot_eco_40-60_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_hot_cold_20_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_hot_cold_20_2.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_hot_cold_20_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_hot_cold_20_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_hot_cold_0_2.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_hot_cold_0_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_hot_cold_0_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_cotton-intensive_40_2.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_cotton-intensive_40_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_cotton-intensive_40_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_cotton-intensive_60_2.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_cotton-intensive_60_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_delicate_0_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_jeans_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_20-deg_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_sport_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_jeans_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_sport_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_jeans_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_fast-45_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_sport_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_sport_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_baby_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_baby_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_baby_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_baby_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_volumous_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_volumous_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_volumous_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_mix_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_jeans_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_baby_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_jeans_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_fast-45_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_jeans_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_jeans_7.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_sport_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_sport_7.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_sport_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_sport_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_volumous_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_baby_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_volumous_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_volumous_7.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_baby_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_baby_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_wool_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_wool_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_wool_4.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_40_11.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_60_11.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_60_10.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/eco/wm_becken-flt_BWM5381IX_cold_eco_40-60_11.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/eco/wm_becken-flt_BWM5381IX_cold_eco_40-60_6.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/eco/wm_becken-flt_BWM5381IX_cold_eco_40-60_8.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/eco/wm_becken-flt_BWM5381IX_cold_eco_40-60_10.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_cold_cotton_40_8.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_delicate_30_0.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_mix_40_0.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_jeans_60_0.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_synthetic_0.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_20-deg_20_0.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_sport_40_11.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_sport_40_2.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_sport_40_6.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_wool_2.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_wool_11.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_mix_40_2.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_wool_6.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_mix_40_6.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/cotton/wm_becken_BWM5379IX_cold_cotton_60_7.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/eco/wm_becken_BWM5379IX_cold_eco_40-60_7.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_mix_40_0.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_delicate_30_0.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_synthetic_40_0.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_wool_40_0.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_sport_40_0.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_fast_40_0.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_intensive_40_0.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_sterilization_0.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_20-deg_20_0.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_15-min_40_0.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_mix_40_4.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_delicate_30_4.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_synthetic_40_4.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_synthetic_40_7.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_30_8.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_40_8.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_60_8.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/eco/wm_becken_BWM5381IX_cold_eco_40-60_8.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_0_10.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_30_10.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_40_10.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_60_10.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/eco/wm_becken_BWM5381IX_cold_eco_40-60_10.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_0_11.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_30_11.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_40_11.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_cold_cotton_60_11.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/eco/wm_becken_BWM5381IX_cold_eco_40-60_11.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_15-min_40_0.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_fast-45_40_0.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_sport_40_0.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_wool_40_0.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_delicate_30_0.csv"
+      ],
+      "test": [
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_cold_cold_0_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_cold_cotton-prewash_40_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/eco/wm_KUBO-1_KBWM8321_cold_eco_40-60_4.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_cold_cotton_40_4.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_cold_cotton_60_4.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_cold_cotton-prewash_40_4.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_cold_cotton-prewash_40_5.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_cold_cotton_90_5.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_cold_cold_20_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_cold_cotton_30_5.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/eco/wm_KUBO-1_KBWM8321_cold_eco_40-60_5.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_cold_cotton_60_5.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/cotton/wm_KUBO-1_KBWM8321_cold_cotton_40_5.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_cold_cold_20_5.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_cold_cold_0_4.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_hot_cotton-prewash_40_0.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_hot_cotton-prewash_40_5.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_hot_cotton-prewash_40_2.csv",
+        "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_hot_cotton-prewash_40_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_delicate_0_2.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_delicate_0_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_delicate_0_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_delicate_30_2.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_synthetic_40_2.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_synthetic_40_0.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_delicate_30_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_delicate_30_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_synthetic_40_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_synthetic_40_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_synthetic_0_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_synthetic_0_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_synthetic_0_2.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_fast-45_2.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_fast-45_4.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_fast-45_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_fast-30_2.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_fast-30_5.csv",
+        "./laboratory/washing_machine/KUBO-2_KBWM8321/others/wm_KUBO-2_KBWM8321_warm_fast-30_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_volumous_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_wool_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_wool_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_wool_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_wool_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_fast-45_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_fast-45_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_fast-45_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_20-deg_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_20-deg_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_20-deg_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_fast-15_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_fast-15_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_fast-15_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_fast-15_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5316/others/wm_KUNFT_KWM5316_warm_jeans_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_wool_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_wool_7.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_fast-45_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_fast-45_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_fast-45_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_fast-45_7.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_fast-15_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_fast-15_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_fast-15_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_20-deg_2.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_20-deg_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_20-deg_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_20-deg_7.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_fast-15_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_baby_7.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_hot_cotton_40_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_volumous_4.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_sport_0.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_volumous_6.csv",
+        "./laboratory/washing_machine/KUNFT_KWM5317/others/wm_KUNFT_KWM5317_warm_fast-15_7.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_mix_40_11.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_synthetic_2.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_synthetic_6.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_fast-45_40_2.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_synthetic_11.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_jeans_60_2.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_jeans_60_6.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_fast-45_40_6.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_delicate_30_2.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_fast-45_40_11.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_20-deg_20_2.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_fast-15_2.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_delicate_30_11.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_delicate_30_6.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_20-deg_20_6.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_jeans_60_11.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_fast-15_6.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_20-deg_20_11.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/others/wm_becken-flt_BWM5381IX_warm_fast-15_11.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_40_2.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_40_10.csv",
+        "./laboratory/washing_machine/becken-flt_BWM5381IX/cotton/wm_becken-flt_BWM5381IX_hot_cotton_60_2.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_mix_40_7.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_delicate_30_7.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_intensive_40_7.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_sterilization_4.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_sterilization_7.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_fast_40_4.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_fast_40_7.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_sport_40_4.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_sport_40_7.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_wool_40_4.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/eco/wm_becken_BWM5379IX_hot_eco_40-60_0.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_wool_40_7.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_20-deg_20_4.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_20-deg_20_7.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_15-min_40_4.csv",
+        "./laboratory/washing_machine/becken_BWM5379IX/others/wm_becken_BWM5379IX_warm_15-min_40_7.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_intensive_40_0.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_20-deg_20_0.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_mix_40_0.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_sterilization_0.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_synthetic_40_0.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_15-min_40_2.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_fast-45_40_2.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_sport_40_2.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_wool_40_2.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_delicate_30_2.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_intensive_40_2.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_20-deg_20_2.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_mix_40_2.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_sterilization_2.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_synthetic_40_2.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_sport_40_6.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_wool_40_6.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/others/wm_becken_BWM5381IX_warm_delicate_30_6.csv",
+        "./laboratory/washing_machine/becken_BWM5381IX/cotton/wm_becken_BWM5381IX_hot_cotton_30_10.csv"
+      ]
+    },
+    "per_machine": {
+      "KUBO-1_KBWM8321": {
+        "rows": 19,
+        "before": {
+          "r2": 0.9238136427113957,
+          "mae": 97.48027301633022,
+          "rmse": 127.6866535905147
+        },
+        "after": {
+          "r2": 0.9144479522177436,
+          "mae": 92.52497536579963,
+          "rmse": 135.30757332572318
+        }
+      },
+      "KUBO-2_KBWM8321": {
+        "rows": 19,
+        "before": {
+          "r2": 0.826718853928108,
+          "mae": 58.69862149132886,
+          "rmse": 66.45137179950639
+        },
+        "after": {
+          "r2": 0.8992800723451331,
+          "mae": 42.31620792924798,
+          "rmse": 50.66242776526256
+        }
+      },
+      "KUNFT_KWM5316": {
+        "rows": 16,
+        "before": {
+          "r2": 0.8409719531039512,
+          "mae": 62.926962138267065,
+          "rmse": 78.95716888371922
+        },
+        "after": {
+          "r2": 0.8591455604342965,
+          "mae": 62.49225812272004,
+          "rmse": 74.30875330747135
+        }
+      },
+      "KUNFT_KWM5317": {
+        "rows": 20,
+        "before": {
+          "r2": 0.8742422031724361,
+          "mae": 105.1344865305459,
+          "rmse": 116.77237338603457
+        },
+        "after": {
+          "r2": 0.9429325936085418,
+          "mae": 69.80669678253142,
+          "rmse": 78.66231342964245
+        }
+      },
+      "becken-flt_BWM5381IX": {
+        "rows": 22,
+        "before": {
+          "r2": 0.9266909020964793,
+          "mae": 93.06240514278558,
+          "rmse": 120.39659133731466
+        },
+        "after": {
+          "r2": 0.9384109822106492,
+          "mae": 85.8281476034143,
+          "rmse": 110.35369840441025
+        }
+      },
+      "becken_BWM5379IX": {
+        "rows": 16,
+        "before": {
+          "r2": 0.7871897912782807,
+          "mae": 171.93154074746064,
+          "rmse": 195.65187132658727
+        },
+        "after": {
+          "r2": 0.8260496297550584,
+          "mae": 146.50369480895003,
+          "rmse": 176.88884898564007
+        }
+      },
+      "becken_BWM5381IX": {
+        "rows": 19,
+        "before": {
+          "r2": 0.6923771704804778,
+          "mae": 107.625982978885,
+          "rmse": 147.36327005726153
+        },
+        "after": {
+          "r2": 0.6515418778909903,
+          "mae": 118.385613703142,
+          "rmse": 156.83943344333494
+        }
+      }
+    }
+  }
 }

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "model_sha256": {
-    "larco_cycle_model.joblib": "4f246d8db216dce0fec19a30426d58afb18b134baf36afd85ee9a7a74d575478",
+    "larco_cycle_model.joblib": "25f5c17fdb569850db543590035dc291a3c60e4196974cf043d68d043b16d651",
     "device_forecast_model.joblib": "cefad65bf466b0f9bb0aa4a2e5644ac8000df0df4433d86833f20ebd3ca20f6a"
   },
   "full_refit_recheck": {
@@ -53,7 +53,7 @@
       "source_record": "./laboratory/washing_machine/KUBO-1_KBWM8321/others/wm_KUBO-1_KBWM8321_cold_cold_0_2.csv",
       "selection_rule": "테스트 ID 순서상 제품별 첫 API 지원 예제, 고장 제품 제외",
       "actual_wh": 125.198,
-      "reference_prediction_wh": 100.28651007853546,
+      "reference_prediction_wh": 94.27863774338664,
       "payload": {
         "unit_price_krw_per_kwh": 200,
         "plans": [
@@ -81,7 +81,7 @@
       "source_record": "./laboratory/washing_machine/KUNFT_KWM5317/cotton/wm_KUNFT_KWM5317_hot_cotton_40_0.csv",
       "selection_rule": "테스트 ID 순서상 제품별 첫 API 지원 예제, 고장 제품 제외",
       "actual_wh": 488.739,
-      "reference_prediction_wh": 544.9155936404435,
+      "reference_prediction_wh": 442.8698774397333,
       "payload": {
         "unit_price_krw_per_kwh": 200,
         "plans": [
